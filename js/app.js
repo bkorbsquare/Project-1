@@ -15,6 +15,11 @@ var cityInputEl = document.querySelector("#search");
 var inputButton = document.querySelector("#submit-but");
 var fiveDay = document.querySelector("#search-results");
 var todaysForecast = document.querySelector("#todays-forecast");
+var dayOne = document.querySelector("#day1");
+var dayTwo = document.querySelector("#day2");
+var dayThree = document.querySelector("#day3");
+var dayFour = document.querySelector("#day4");
+var dayFive = document.querySelector("#day5");
 
 var inputSubmitHandler = function (event) {
   event.preventDefault();
@@ -26,6 +31,7 @@ var inputSubmitHandler = function (event) {
   } else {
     alert("Please enter a city");
   }
+
   /* localStorage.setItem("city", cityName);
   todaysForecast.textContent = "";
   displaySearched(cityName);*/
@@ -64,7 +70,12 @@ var getForecast = function (lat, lon) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
-
+        todaysForecast.textContent = "";
+        dayOne.textContent = "";
+        dayTwo.textContent = "";
+        dayThree.textContent = "";
+        dayFour.textContent = "";
+        dayFive.textContent = "";
         var cityName = data.city.name;
         var cityDate = data.list[3].dt_txt;
         var weatherIcon = data.list[3].weather[0].icon;
