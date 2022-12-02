@@ -14,6 +14,8 @@ $(function () {
 var cityInputEl = document.querySelector("#search");
 var inputButton = document.querySelector("#submit-but");
 var fiveDay = document.querySelector("#search-results");
+var todaysForecast = document.querySelector("#todays-forecast");
+
 var inputSubmitHandler = function (event) {
   event.preventDefault();
 
@@ -70,7 +72,7 @@ var getForecast = function (lat, lon) {
         var temp = data.list[3].main.temp;
         var windSpeed = data.list[3].wind.speed;
 
-        /* var cityEl = document.createElement("div");
+        var cityEl = document.createElement("div");
         cityEl.textContent = cityName;
         todaysForecast.appendChild(cityEl);
         var dateEl = document.createElement("div");
@@ -88,7 +90,7 @@ var getForecast = function (lat, lon) {
         var speedEl = document.createElement("div");
         speedEl.textContent = "Wind Speed: " + windSpeed;
         tempEl.appendChild(speedEl);
-*/
+
         let dayNum = 1;
         for (var i = 0; i < data.list.length; i = i + 8) {
           var dayBox = document.getElementById("day" + dayNum);
