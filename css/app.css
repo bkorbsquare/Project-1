@@ -134,4 +134,19 @@ body {
     font-size: 0.8rem;
   }
 
+  .forecast {
+    border: solid black 2px;
+    border-radius: 10px;
+    background-color: #cacaca;
+    width: 150px;
+    height: 150px;
+  }
+
+  .forecast-today {
+    border: solid black 2px;
+    border-radius: 10px;
+    background-color: #cacaca;
+    width: 150px;
+    height: 200px;
+  }
   /*footer*/

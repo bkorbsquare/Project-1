@@ -38,15 +38,22 @@
   <main>
     <section class="row align-middle" id="initial-search">
       <div class="input-group input-group-rounded">
-        <input class="input-group-field" type="search">
+        <input id="search" class="input-group-field" type="search">
         <div class="input-group-button">
-          <input type="submit" class="button secondary" value="Search">
+          <input id="submit-but" type="submit" class="button secondary" value="Search">
         </div>
       </div>
     </section>
     <!--this div serves as the containers in which results will be appended.-->
     <section>
-      <div id="search-results"></div>
+      <div id="search-results">
+            <div id="todays-forecast" class="forecast-today"></div>
+            <div id="day1" class = "forecast"></div>
+            <div id="day2" class = "forecast"></div>
+            <div id="day3" class = "forecast"></div>
+            <div id="day4" class = "forecast"></div>
+            <div id="day5" class = "forecast"></div>
+      </div>
     </section>
     <section>
       <div class="hide"id="resetBtn"><button class="expanded button align-center">reset</button></div>
