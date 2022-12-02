@@ -6,8 +6,8 @@
     --buttonInactive: #084b83;
 }
 /*Tag for initial search bar.*/
-#initial-search {
-    margin: 10%;
+#search {
+
   }
 /*Tag for appending previous searches to menu.*/
 #saved-results {
