@@ -135,13 +135,13 @@ var getForecast = function (lat, lon) {
 
           var temp5 = oneDay.main.temp;
           var tempBox = document.createElement("div");
-          tempBox.textContent = temp5 + "degrees";
-          iconBox.appendChild(tempBox);
+          tempBox.textContent = "Temperature: " + temp5 + "F";
+          iconContainer.appendChild(tempBox);
 
           var wind = oneDay.wind.speed;
           var windBox = document.createElement("div");
           windBox.textContent = wind + "mph";
-          iconBox.appendChild(windBox);
+          tempBox.appendChild(windBox);
 
           var humidity5 = oneDay.main.humidity;
           var humidBox = document.createElement("div");
