@@ -89,15 +89,25 @@ var getForecast = function (lat, lon) {
         var dateEl = document.createElement("div");
         dateEl.textContent = "Date: " + cityDate;
         cityEl.appendChild(dateEl);
+
         var weatherEl = document.createElement("div");
-        weatherEl.textContent = weatherIcon;
+        var iconImage = document.createElement("img");
+        iconImage.setAttribute(
+          "src",
+          "http://openweathermap.org/img/wn/" + weatherIcon + "@2x.png"
+        );
+
         dateEl.appendChild(weatherEl);
+        weatherEl.appendChild(iconImage);
+
         var humidityEl = document.createElement("div");
         humidityEl.textContent = "Humidity: " + humidity;
         weatherEl.appendChild(humidityEl);
+
         var tempEl = document.createElement("div");
         tempEl.textContent = "Temperature: " + temp + "F";
         humidityEl.appendChild(tempEl);
+
         var speedEl = document.createElement("div");
         speedEl.textContent = "Wind Speed: " + windSpeed;
         tempEl.appendChild(speedEl);
@@ -114,19 +124,24 @@ var getForecast = function (lat, lon) {
           dayBox.appendChild(dateBox);
 
           var icon = oneDay.weather[0].icon;
-          var iconBox = document.createElement("div");
-          iconBox.textContent = icon;
-          dateBox.appendChild(iconBox);
+          var iconContainer = document.createElement("div");
+          var iconBox = document.createElement("img");
+          iconBox.setAttribute(
+            "src",
+            "http://openweathermap.org/img/wn/" + icon + "@2x.png"
+          );
+          dateBox.appendChild(iconContainer);
+          iconContainer.appendChild(iconBox);
 
           var temp5 = oneDay.main.temp;
           var tempBox = document.createElement("div");
-          tempBox.textContent = temp5 + "degrees";
-          iconBox.appendChild(tempBox);
+          tempBox.textContent = "Temperature: " + temp5 + "F";
+          iconContainer.appendChild(tempBox);
 
           var wind = oneDay.wind.speed;
           var windBox = document.createElement("div");
           windBox.textContent = wind + "mph";
-          iconBox.appendChild(windBox);
+          tempBox.appendChild(windBox);
 
           var humidity5 = oneDay.main.humidity;
           var humidBox = document.createElement("div");
@@ -143,7 +158,7 @@ var getForecast = function (lat, lon) {
 inputButton.addEventListener("click", inputSubmitHandler);
 
 var input = document.getElementById("search");
-input.addEventListener("keypress", function(event) {
+input.addEventListener("keypress", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
     document.getElementById("submit-but").click();
