@@ -11,25 +11,23 @@ $(function () {
   });
 });
 
-//this portion is where we find our lat and long.
 var getCityName = function (cityName) {
-  var locationURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=5eadcacf0e30dbacf32a851c3ca447bb";
+  var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=5eadcacf0e30dbacf32a851c3ca447bb";
 
-  //here boy, this guy retrievers the lat and long of the city we input.
-  fetch(locationURL).then(function (response) {
+  fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
         console.log(data);
         var citLat = data[0].lat;
         var citLon = data[0].lon;
-        //this gets our lat and long  over to our two weather api's the first gets our five day the second is our current weather.
+
         getForecast(citLat, citLon);
         getWeather(citLat, citLon);
       });
     }
   });
 };
-//5-day forcast
+
 var getForecast = function (lat, lon) {
   var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=5eadcacf0e30dbacf32a851c3ca447bb";
 
@@ -44,7 +42,7 @@ var getForecast = function (lat, lon) {
         };
   });};
 
-  //currentWeather information
+  //grabs current weather information
   var getWeather = function (lat, lon) {
     var weatherUrl =  "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=620f19671ee57177ce7da59e3ed460e7";
   
@@ -59,8 +57,7 @@ var getForecast = function (lat, lon) {
           };
     });};
 
-//this will create the weather card on our page using the data from the weather API's.
-//need to figure out how to get the data from getWeather and getForecast  into this function. 
+
 function displayWeather(data) {
 
   var weatherIcon = data.weather[0].icon;
@@ -78,34 +75,25 @@ function displayWeather(data) {
   var cityName = data.name;
   
  
-//adds weather card to the page.
+console.log(weatherIcon);
   resultsEl.appendChild(weatherCard);
   weatherCard.setAttribute('id', 'weather-card')
-
-  //cityEl adds an h2 above the weather information with the chosen city name.
   weatherCard.appendChild(cityEl);
   cityEl.textContent = cityName;
-  //current header creates the container that will display weather conditions.
   weatherCard.appendChild(currentHeader);
-  currentHeader.setAttribute('id', 'current-header');
-  //current temp should be aligned left
+  currentHeader.setAttribute('id', 'current-header')
   currentHeader.appendChild(currentTempEl);
   currentTempEl.setAttribute('id', 'current-temp');
   currentTempEl.textContent = 'Temp: ' + temp + 'F';
-  //currentWeatherEl  will be the description of conditions and shouild be placed in the center of the header.
   currentHeader.appendChild(currentWeatherEl);
   currentWeatherEl.setAttribute('id','current-weather');
   currentWeatherEl.textContent = weatherDescription;
-  //Icon should be aligned right.
   currentHeader.appendChild(currentIconEl);
   currentIconEl.setAttribute('scr', iconUrl);
   currentIconEl.setAttribute('id','current-icon');
-
-  //creates the container for the 5 day forcast.
   weatherCard.appendChild(projectedContainer);
   projectedContainer.setAttribute('id', 'projected-container');
 
-  //this loop is going to loop through and get the 5 day forcast for your time of day.
 for (i=1; i<40; i = i+8) {
 
   var projectedDate = data.list[i].dt_txt;
@@ -118,15 +106,11 @@ for (i=1; i<40; i = i+8) {
   var projectedIconEl = document.createElement('img');
   var projectedResultsEl = document.querySelector('#projected-container');
 
-  //adds card to the projected container every time through the loop.
   projectedResultsEl.appendChild(projectedCard);
-  //Icon should be aligned top.
   projectedCard.appendChild(projectedIconEl);
     projectedIconEl.setAttribute('scr', projectedIconUrl);
-    //date should be aligned middle.
   projectedCard.appendChild(projectedDateEl);
     projectedDateEl.textContent(projectedDate);
-    //temp should be aligned bottom
   projectedCard.appendChild(projectedTempEl);
     projectedTempEl.textContent(currentTemp + 'F');
 }
