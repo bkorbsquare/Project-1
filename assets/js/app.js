@@ -23,41 +23,31 @@ var getCityName = function (cityName) {
         var citLat = data[0].lat;
         var citLon = data[0].lon;
         //this gets our lat and long  over to our two weather api's the first gets our five day the second is our current weather.
-        getForecast(citLat, citLon);
+        // getForecast(citLat, citLon);
         getWeather(citLat, citLon);
       });
     }
   });
 };
-//5-day forcast
-var getForecast = function (lat, lon) {
+// this will fetch all the data we will need.
+function getWeather(lat, lon) {
   var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=5eadcacf0e30dbacf32a851c3ca447bb";
-
-    fetch(forecastUrl).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {
-          console.log(data);
-    
-
-
-          })
-        };
-  });};
-
-  //currentWeather information
-  var getWeather = function (lat, lon) {
-    var weatherUrl =  "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=620f19671ee57177ce7da59e3ed460e7";
-  
-      fetch(weatherUrl).then(function (response) {
-        if (response.ok) {
-          response.json().then(function (data) {
-            console.log(data);
-            displayWeather(data);
-  
-  
-            })
-          };
-    });};
+  var weatherUrl =  "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=620f19671ee57177ce7da59e3ed460e7";
+  Promise.all([
+    //this fetch requests the 5-day forecast
+  fetch(forecastUrl).then(function(response) {
+    if(response.ok){response.json().then(function(data) {  
+      console.log(data);
+    })}}),
+  //this fetch requests the current weather conditions
+  fetch(weatherUrl).then(function(response) {
+    if(response.ok){response.json().then(function(data){
+      console.log(data);
+     })}})]);
+     //this REFUSES TO LOG THE THING.... probably because it isn't actually storing things in an array of data to be used
+console.log(data);
+displayWeather(data);
+};
 
 //this will create the weather card on our page using the data from the weather API's.
 //need to figure out how to get the data from getWeather and getForecast  into this function. 
@@ -98,7 +88,7 @@ function displayWeather(data) {
   currentWeatherEl.textContent = weatherDescription;
   //Icon should be aligned right.
   currentHeader.appendChild(currentIconEl);
-  currentIconEl.setAttribute('scr', iconUrl);
+  currentIconEl.setAttribute('src', iconUrl);
   currentIconEl.setAttribute('id','current-icon');
 
   //creates the container for the 5 day forcast.
@@ -154,5 +144,6 @@ var inputSubmitHandler = function (event) {
 };
 
 inputButton.addEventListener("click", inputSubmitHandler);
+
 
 
