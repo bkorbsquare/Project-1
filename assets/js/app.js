@@ -33,20 +33,23 @@ var getCityName = function (cityName) {
 function getWeather(lat, lon) {
   var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=5eadcacf0e30dbacf32a851c3ca447bb";
   var weatherUrl =  "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=620f19671ee57177ce7da59e3ed460e7";
+  var forecastData;
+  var weatherData;
   Promise.all([
     //this fetch requests the 5-day forecast
   fetch(forecastUrl).then(function(response) {
-    if(response.ok){response.json().then(function(data) {  
-      console.log(data);
+    if(response.ok){response.json().then(function(data1) { 
+      var forecastData = data1; 
+      console.log(forecastData);
     })}}),
   //this fetch requests the current weather conditions
   fetch(weatherUrl).then(function(response) {
-    if(response.ok){response.json().then(function(data){
-      console.log(data);
+    if(response.ok){response.json().then(function(data2){
+      var weatherData = data2;
+      console.log(weatherData);
      })}})]);
      //this REFUSES TO LOG THE THING.... probably because it isn't actually storing things in an array of data to be used
-console.log(data);
-displayWeather(data);
+displayWeather(forecastData, weatherData);
 };
 
 //this will create the weather card on our page using the data from the weather API's.
