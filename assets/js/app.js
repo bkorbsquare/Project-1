@@ -35,13 +35,15 @@ var getCityName = function (cityName) {
 async function getWeather(lat, lon) {
   var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=5eadcacf0e30dbacf32a851c3ca447bb";
   var weatherUrl =  "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=620f19671ee57177ce7da59e3ed460e7";
-  var pointOfInterestURL = "https://api.geoapify.com/v2/places?bias=proximity:" +lat + ',' + lon + '&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
-  var [data1, data2, data3] = await  Promise.all([
+  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation&filter=circle:" + lat + ',' + lon + ',5000000&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
+  var siteData = [data1, data2, data3] = await  Promise.all([
     
     fetch(forecastUrl).then(function (response) {
       if (response.ok) {
-        response.json().then(function (data1) {
-          console.log(data1);})}}),
+        response.json().then(function (data) {
+
+          console.log(data)
+          var data1 = data;})}}),
     fetch(weatherUrl).then(function (response) {
       if (response.ok) {
         response.json().then(function (data2) {
@@ -52,16 +54,18 @@ async function getWeather(lat, lon) {
           console.log(data3);})}})
     ]);
      //this REFUSES TO LOG THE THING.... probably because it isn't actually storing things in an array of data to be used
-console.log(data1, data2, data3);
+console.log(siteData);
 };
 
 //this will create the weather card on our page using the data from the weather API's.
 //need to figure out how to get the data from getWeather and getForecast  into this function. 
 function displayWeather(data1, ) {
-
-  var weatherIcon = data.weather[0].icon;
-  var weatherDescription = data.weather[0].description;
+  
+  var cityName = data.name;
   var temp = data.main.temp;
+  var weatherDescription = data.weather[0].description;
+  var weatherIcon = data.weather[0].icon;
+  var iconUrl = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
   var resultsEl = document.querySelector('#results')
   var weatherCard = document.createElement('div');
   var cityEl = document.createElement('h2');
@@ -70,8 +74,6 @@ function displayWeather(data1, ) {
   var currentWeatherEl = document.createElement('li');
   var currentIconEl = document.createElement('img');
   var projectedContainer = document.createElement('div');
-  var iconUrl = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
-  var cityName = data.name;
   
  
 //adds weather card to the page.
@@ -87,8 +89,8 @@ function displayWeather(data1, ) {
   //current temp should be aligned left
   currentHeader.appendChild(currentTempEl);
   currentTempEl.setAttribute('id', 'current-temp');
-  currentTempEl.textContent = 'Temp: ' + temp + 'F';
-  //currentWeatherEl  will be the description of conditions and shouild be placed in the center of the header.
+  currentTempEl.textContent = 'Temp: ' + temp + '° F';
+  //currentWeatherEl  will be the description of conditions and should be placed in the center of the header.
   currentHeader.appendChild(currentWeatherEl);
   currentWeatherEl.setAttribute('id','current-weather');
   currentWeatherEl.textContent = weatherDescription;
