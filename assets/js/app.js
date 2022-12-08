@@ -44,13 +44,11 @@ var getCityName = function (cityName) {
 function getWeather(lat, lon) {
   var forecastUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=f48eeb974e0cd19636dc2234eda9e443";
 
-  
-  console.log('forecastData');
   fetch(forecastUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
         displayWeather(data);
-        console.log(data);
+
       })}}) 
     
 };
@@ -58,7 +56,7 @@ function getWeather(lat, lon) {
   
 function getPointsOfInterest(lat, lon) {
   var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation.hotel&bias=proximity:" + lon + ',' + lat + '&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
-console.log(pointOfInterestURL);
+
     fetch(pointOfInterestURL).then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
@@ -99,7 +97,7 @@ function displayWeather(data) {
   currentHeader.appendChild(currentTempEl);
   currentTempEl.setAttribute('id', 'current-temp');
   currentTempEl.textContent = 'Temp: ' + temp + '° F';
-  console.log('please');
+
   //currentWeatherEl  will be the description of conditions and should be placed in the center of the header.
   currentHeader.appendChild(currentWeatherEl);
   currentWeatherEl.setAttribute('id','current-weather');
@@ -125,7 +123,7 @@ for (i=0; i<5; i++) {
   var projectedDateEl = document.createElement('li');
   var projectedIconEl = document.createElement('img');
   var projectedResultsEl = document.querySelector('#projected-container');
-console.log(projectedIconUrl);
+
   //adds card to the projected container every time through the loop.
   projectedResultsEl.appendChild(projectedCard);
   projectedCard.setAttribute('id', 'projected-card')
@@ -151,37 +149,38 @@ function displayResults(data) {
   console.log(data);
 for (i=0; i<10; i++) {
   var pointOfInterest = document.createElement('div');
-  var listingLogoEl = document.createElement('img');
-  // var logoURL = 
+
   var infoContainer = document.createElement('div');
   var pointNameEl = document.createElement('h2');
-  var pointName = data.features[i].properties.address_line1
+  var pointName = data.features[i].properties.address_line1;
   var  ratingEl = document.createElement('span');
   var rating = data.features[i].properties.datasource.raw.stars;
   var addressEl = document.createElement('p');
   var address = data.features[i].properties.address_line2;
-  var descriptionEl = document.createElement('p');
-  var description = data.features[i].properties.details[0];
-  console.log(description);
+  var linkContainer = document.createElement('div');
+  var websiteBtn = document.createElement('button')
+  var website = data.features[i].properties.datasource.raw.website;
+  var webLink = 'href=' + website;
+  // var mapLink = 'href=https://www.google.com/maps/@' + lat + ',' + lon + ',14z';
+  console.log(webLink);
+  // console.log(mapLink);
   resultsEl.appendChild(pointOfInterest);
-  pointOfInterest.setAttribute('id', 'point-of-interest');
-  pointOfInterest.appendChild(listingLogoEl);
-    listingLogoEl.setAttribute('id', 'listing-logo');
-    // listingLogoEl.setAttribute('src', logoURL);
-  pointOfInterest.appendChild(infoContainer);
+    pointOfInterest.setAttribute('id', 'point-of-interest');
+    pointOfInterest.appendChild(infoContainer);
     infoContainer.setAttribute('id', 'info-container');
-  infoContainer.appendChild(pointNameEl);
-    pointNameEl.setAttribute('id', 'point-name');
-    pointNameEl.textContent = pointName;
-  infoContainer.appendChild(ratingEl);
-    ratingEl.setAttribute('id', 'rating');
-    ratingEl.textContent = 'Rating: ' + rating;
-  infoContainer.appendChild(addressEl);
-    addressEl.setAttribute('id', 'address');
-    addressEl.textContent = address;
-  pointOfInterest.appendChild(descriptionEl);
-    descriptionEl.setAttribute('id', 'description');
-    descriptionEl.textContent = 'description placeholder rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble';
+      infoContainer.appendChild(pointNameEl);
+        pointNameEl.setAttribute('id', 'point-name');
+        pointNameEl.textContent = pointName;
+      infoContainer.appendChild(ratingEl);
+        ratingEl.setAttribute('id', 'rating');
+        ratingEl.textContent = 'Rating: ' + rating;
+      infoContainer.appendChild(addressEl);
+        addressEl.setAttribute('id', 'address');
+        addressEl.textContent = address;
+    pointOfInterest.appendChild(linkContainer);
+      linkContainer.setAttribute('id', 'link-container');
+        linkContainer.appendChild(websiteBtn)
+          // websiteBtn.setAttribute('onclick', )
 }
 };
 var cityInputEl = document.querySelector("#search");
