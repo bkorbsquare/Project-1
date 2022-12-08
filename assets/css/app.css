@@ -5,6 +5,9 @@
   --background: #587D71;
   --buttonInactive: #084b83;
 }
+li {
+  list-style: none;
+}
 /*Tag for initial search bar.*/
 #initial-search {
   margin: 10%;
@@ -16,6 +19,30 @@
 /*Tag for menu to target.*/
 #responsive-menu {
 
+}
+#weather-card {
+    padding: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    justify-content: center;
+    border: solid 2px;
+    border-radius: 10px;
+    box-shadow: 5px 10px var(--buttonInactive);
+  
+}
+#projected-card{
+    padding: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    justify-content: center;
+    border: solid 2px;
+    border-radius: 10px;
+    box-shadow: 5px 10px var(--header);
+  
 }
 #listing-logo {
   width: 100px;
