@@ -57,7 +57,7 @@ function getWeather(lat, lon) {
 
   
 function getPointsOfInterest(lat, lon) {
-  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation.hotel&filter=circle:" + lon + ',' + lat + ',5000&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
+  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation.hotel&bias=proximity:" + lon + ',' + lat + '&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
 console.log(pointOfInterestURL);
     fetch(pointOfInterestURL).then(function (response) {
       if (response.ok) {
@@ -161,7 +161,8 @@ for (i=0; i<10; i++) {
   var addressEl = document.createElement('p');
   var address = data.features[i].properties.address_line2;
   var descriptionEl = document.createElement('p');
-
+  var description = data.features[i].properties.details[0];
+  console.log(description);
   resultsEl.appendChild(pointOfInterest);
   pointOfInterest.setAttribute('id', 'point-of-interest');
   pointOfInterest.appendChild(listingLogoEl);
