@@ -17,6 +17,11 @@
 #responsive-menu {
 
 }
+#listing-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
 /*Tag for reloading the page*/
 #resetBtn {
   margin: 20%;

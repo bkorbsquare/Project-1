@@ -57,15 +57,17 @@ function getWeather(lat, lon) {
 
   
 function getPointsOfInterest(lat, lon) {
-var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation.hotel&filter=circle:" + lon + ',' + lat + ',5000&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
-
+  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation.hotel&filter=circle:" + lon + ',' + lat + ',5000&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
+console.log(pointOfInterestURL);
     fetch(pointOfInterestURL).then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
           displayResults(data)
           ;})}})
-    
-}
+
+};
+
+// https://api.geoapify.com/v2/place-details?drive_15.fuel,drive_15.hotel,
 
 
 //this will create the weather card on our page using the data from the weather API's.
@@ -112,7 +114,7 @@ function displayWeather(data) {
   projectedContainer.setAttribute('id', 'projected-container');
 
   //this loop is going to loop through and get the 5 day forcast for your time of day.
-for (i=0; i<6; i++) {
+for (i=0; i<5; i++) {
 
   var projectedDate = data.daily[i].dt;
   var projectedIconUrl = 'http://openweathermap.org/img/wn/' + projectedIcon + "@2x.png"
@@ -123,7 +125,7 @@ for (i=0; i<6; i++) {
   var projectedDateEl = document.createElement('li');
   var projectedIconEl = document.createElement('img');
   var projectedResultsEl = document.querySelector('#projected-container');
-
+console.log(projectedIconUrl);
   //adds card to the projected container every time through the loop.
   projectedResultsEl.appendChild(projectedCard);
   projectedCard.setAttribute('id', 'projected-card')
@@ -140,6 +142,10 @@ for (i=0; i<6; i++) {
   projectedCard.appendChild(projectedTempEl);
     projectedTempEl.textContent = currentTemp + '° F';
 };
+var initialSearchEl = document.querySelector('#initial-search');
+initialSearchEl.setAttribute('class', 'hide');
+var resetBtnEl = document.querySelector('#resetBtn');
+resetBtnEl.removeAttribute('class', 'hide');
 };
 function displayResults(data) {
   console.log(data);
@@ -154,13 +160,13 @@ for (i=0; i<10; i++) {
   var rating = data.features[i].properties.datasource.raw.stars;
   var addressEl = document.createElement('p');
   var address = data.features[i].properties.address_line2;
-  // var descriptionEl = document.createElement('p');
+  var descriptionEl = document.createElement('p');
 
   resultsEl.appendChild(pointOfInterest);
   pointOfInterest.setAttribute('id', 'point-of-interest');
-  // pointOfInterest.appendChild(listingLogoEl);
-  //   listingLogoEl.setAttribute('id', 'listing-logo');
-  //   listingLogoEl.setAttribute('src', logoURL);
+  pointOfInterest.appendChild(listingLogoEl);
+    listingLogoEl.setAttribute('id', 'listing-logo');
+    // listingLogoEl.setAttribute('src', logoURL);
   pointOfInterest.appendChild(infoContainer);
     infoContainer.setAttribute('id', 'info-container');
   infoContainer.appendChild(pointNameEl);
@@ -172,8 +178,9 @@ for (i=0; i<10; i++) {
   infoContainer.appendChild(addressEl);
     addressEl.setAttribute('id', 'address');
     addressEl.textContent = address;
-  // pointOfInterest.appendChild(descriptionEl);
-  //   descriptionEl.setAttribute('id', 'description');
+  pointOfInterest.appendChild(descriptionEl);
+    descriptionEl.setAttribute('id', 'description');
+    descriptionEl.textContent = 'description placeholder rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble';
 }
 };
 var cityInputEl = document.querySelector("#search");
