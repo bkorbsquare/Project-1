@@ -22,6 +22,8 @@ var getCityName = function (cityName) {
         console.log(data);
         var citLat = data[0].lat;
         var citLon = data[0].lon;
+        console.log(citLat);
+        console.log(citLon);
         //this gets our lat and long  over to our two weather api's the first gets our five day the second is our current weather.
         // getForecast(citLat, citLon);
         getWeather(citLat, citLon);
@@ -30,31 +32,32 @@ var getCityName = function (cityName) {
   });
 };
 // this will fetch all the data we will need.
-function getWeather(lat, lon) {
+async function getWeather(lat, lon) {
   var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=5eadcacf0e30dbacf32a851c3ca447bb";
   var weatherUrl =  "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=620f19671ee57177ce7da59e3ed460e7";
-  var forecastData;
-  var weatherData;
-  Promise.all([
-    //this fetch requests the 5-day forecast
-  fetch(forecastUrl).then(function(response) {
-    if(response.ok){response.json().then(function(data1) { 
-      var forecastData = data1; 
-      console.log(forecastData);
-    })}}),
-  //this fetch requests the current weather conditions
-  fetch(weatherUrl).then(function(response) {
-    if(response.ok){response.json().then(function(data2){
-      var weatherData = data2;
-      console.log(weatherData);
-     })}})]);
+  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accomodation&bias=proximity:" +lat + ',' + lon + '&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
+  var [data1, data2, data3] = await  Promise.all([
+    
+    fetch(forecastUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data1) {
+          console.log(data1);})}}),
+    fetch(weatherUrl).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data2) {
+          console.log(data2);})}}),
+    fetch(pointOfInterestURL).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data3) {
+          console.log(data3);})}})
+    ]);
      //this REFUSES TO LOG THE THING.... probably because it isn't actually storing things in an array of data to be used
-displayWeather(forecastData, weatherData);
+console.log(data1, data2, data3);
 };
 
 //this will create the weather card on our page using the data from the weather API's.
 //need to figure out how to get the data from getWeather and getForecast  into this function. 
-function displayWeather(data) {
+function displayWeather(data1, ) {
 
   var weatherIcon = data.weather[0].icon;
   var weatherDescription = data.weather[0].description;
@@ -115,13 +118,38 @@ for (i=1; i<40; i = i+8) {
   projectedResultsEl.appendChild(projectedCard);
   //Icon should be aligned top.
   projectedCard.appendChild(projectedIconEl);
-    projectedIconEl.setAttribute('scr', projectedIconUrl);
+    projectedIconEl.setAttribute('src', projectedIconUrl);
     //date should be aligned middle.
   projectedCard.appendChild(projectedDateEl);
     projectedDateEl.textContent(projectedDate);
     //temp should be aligned bottom
   projectedCard.appendChild(projectedTempEl);
     projectedTempEl.textContent(currentTemp + 'F');
+}
+
+for (i=0; i<10; i++) {
+  var pointOfInterest = document.createElement('div');
+  var listingLogoEl = document.createElement('img');
+  var infoContainer = document.createElement('div');
+  var pointNameEl = document.createElement('h2');
+  var  ratingEl = document.createElement('span');
+  var addressEl = document.createElement('p');
+  var descriptionEl = document.createElement('p');
+
+  resultsEl.appendChild(pointOfInterest);
+  pointOfInterest.setAttribute('id', 'point-of-interest');
+  pointOfInterest.appendChild(listingLogoEl);
+    listingLogoEl.setAttribute('id', 'listing-logo');
+  pointOfInterest.appendChild(infoContainer);
+    infoContainer.setAttribute('id', 'info-container');
+  infoContainer.appendChild(pointNameEl);
+    pointNameEl.setAttribute('id', 'point-name');
+  infoContainer.appendChild(ratingEl);
+    ratingEl.setAttribute('id', 'rating');
+  infoContainer.appendChild(addressEl);
+    addressEl.setAttribute('id', 'address');
+  pointOfInterest.appendChild(descriptionEl);
+    descriptionEl.setAttribute('id', 'description');
 }
 };
 
