@@ -61,8 +61,9 @@ var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommod
 
     fetch(pointOfInterestURL).then(function (response) {
       if (response.ok) {
-        response.json().then(function (data3) {
-          console.log(data3);})}})
+        response.json().then(function (data) {
+          displayResults(data)
+          ;})}})
     
 }
 
@@ -140,35 +141,38 @@ for (i=0; i<6; i++) {
     projectedTempEl.textContent = currentTemp + '° F';
 };
 };
+function displayResults(data) {
+  console.log(data);
+for (i=0; i<10; i++) {
+  var pointOfInterest = document.createElement('div');
+  var listingLogoEl = document.createElement('img');
+  // var logoURL = 
+  var infoContainer = document.createElement('div');
+  var pointNameEl = document.createElement('h2');
+  var  ratingEl = document.createElement('span');
+  var addressEl = document.createElement('p');
+  var address = data.features[i].properties.formatted;
+  var descriptionEl = document.createElement('p');
 
-// for (i=0; i<10; i++) {
-//   var pointOfInterest = document.createElement('div');
-//   var listingLogoEl = document.createElement('img');
-//   // var logoURL = 
-//   var infoContainer = document.createElement('div');
-//   var pointNameEl = document.createElement('h2');
-//   var  ratingEl = document.createElement('span');
-//   var addressEl = document.createElement('p');
-//   var descriptionEl = document.createElement('p');
-
-//   resultsEl.appendChild(pointOfInterest);
-//   pointOfInterest.setAttribute('id', 'point-of-interest');
-//   pointOfInterest.appendChild(listingLogoEl);
-//     listingLogoEl.setAttribute('id', 'listing-logo');
-//     listingLogoEl.setAttribute('src', logoURL);
-//   pointOfInterest.appendChild(infoContainer);
-//     infoContainer.setAttribute('id', 'info-container');
-//   infoContainer.appendChild(pointNameEl);
-//     pointNameEl.setAttribute('id', 'point-name');
-//     pointNameEl.textContent = 
-//   infoContainer.appendChild(ratingEl);
-//     ratingEl.setAttribute('id', 'rating');
-//   infoContainer.appendChild(addressEl);
-//     addressEl.setAttribute('id', 'address');
-//   pointOfInterest.appendChild(descriptionEl);
-//     descriptionEl.setAttribute('id', 'description');
-// }
-
+  resultsEl.appendChild(pointOfInterest);
+  pointOfInterest.setAttribute('id', 'point-of-interest');
+  pointOfInterest.appendChild(listingLogoEl);
+    listingLogoEl.setAttribute('id', 'listing-logo');
+    listingLogoEl.setAttribute('src', logoURL);
+  pointOfInterest.appendChild(infoContainer);
+    infoContainer.setAttribute('id', 'info-container');
+  infoContainer.appendChild(pointNameEl);
+    pointNameEl.setAttribute('id', 'point-name');
+    pointNameEl.textContent = 
+  infoContainer.appendChild(ratingEl);
+    ratingEl.setAttribute('id', 'rating');
+  infoContainer.appendChild(addressEl);
+    addressEl.setAttribute('id', 'address');
+    addressEl.textContent = address;
+  // pointOfInterest.appendChild(descriptionEl);
+  //   descriptionEl.setAttribute('id', 'description');
+}
+};
 var cityInputEl = document.querySelector("#search");
 var inputButton = document.querySelector("#submit-but");
 var fiveDay = document.querySelector("#search-results");
