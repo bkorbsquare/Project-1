@@ -149,23 +149,26 @@ for (i=0; i<10; i++) {
   // var logoURL = 
   var infoContainer = document.createElement('div');
   var pointNameEl = document.createElement('h2');
+  var pointName = data.features[i].properties.address_line1
   var  ratingEl = document.createElement('span');
+  var rating = data.features[i].properties.datasource.raw.stars;
   var addressEl = document.createElement('p');
-  var address = data.features[i].properties.formatted;
-  var descriptionEl = document.createElement('p');
+  var address = data.features[i].properties.address_line2;
+  // var descriptionEl = document.createElement('p');
 
   resultsEl.appendChild(pointOfInterest);
   pointOfInterest.setAttribute('id', 'point-of-interest');
-  pointOfInterest.appendChild(listingLogoEl);
-    listingLogoEl.setAttribute('id', 'listing-logo');
-    listingLogoEl.setAttribute('src', logoURL);
+  // pointOfInterest.appendChild(listingLogoEl);
+  //   listingLogoEl.setAttribute('id', 'listing-logo');
+  //   listingLogoEl.setAttribute('src', logoURL);
   pointOfInterest.appendChild(infoContainer);
     infoContainer.setAttribute('id', 'info-container');
   infoContainer.appendChild(pointNameEl);
     pointNameEl.setAttribute('id', 'point-name');
-    pointNameEl.textContent = 
+    pointNameEl.textContent = pointName;
   infoContainer.appendChild(ratingEl);
     ratingEl.setAttribute('id', 'rating');
+    ratingEl.textContent = 'Rating: ' + rating;
   infoContainer.appendChild(addressEl);
     addressEl.setAttribute('id', 'address');
     addressEl.textContent = address;
