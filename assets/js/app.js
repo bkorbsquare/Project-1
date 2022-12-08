@@ -35,7 +35,7 @@ var getCityName = function (cityName) {
 async function getWeather(lat, lon) {
   var forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=5eadcacf0e30dbacf32a851c3ca447bb";
   var weatherUrl =  "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=620f19671ee57177ce7da59e3ed460e7";
-  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accomodation&bias=proximity:" +lat + ',' + lon + '&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
+  var pointOfInterestURL = "https://api.geoapify.com/v2/places?bias=proximity:" +lat + ',' + lon + '&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
   var [data1, data2, data3] = await  Promise.all([
     
     fetch(forecastUrl).then(function (response) {
