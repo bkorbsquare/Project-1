@@ -159,11 +159,9 @@ for (i=0; i<10; i++) {
   var address = data.features[i].properties.address_line2;
   var linkContainer = document.createElement('div');
   var websiteBtn = document.createElement('button')
-  var website = data.features[i].properties.datasource.raw.website;
-  var webLink = 'href=' + website;
-  // var mapLink = 'href=https://www.google.com/maps/@' + lat + ',' + lon + ',14z';
-  console.log(webLink);
-  // console.log(mapLink);
+  // var website = data.features[i].properties.datasource.raw.website;
+  var mapBtn = document.createElement('button');
+
   resultsEl.appendChild(pointOfInterest);
     pointOfInterest.setAttribute('id', 'point-of-interest');
     pointOfInterest.appendChild(infoContainer);
@@ -179,8 +177,12 @@ for (i=0; i<10; i++) {
         addressEl.textContent = address;
     pointOfInterest.appendChild(linkContainer);
       linkContainer.setAttribute('id', 'link-container');
-        linkContainer.appendChild(websiteBtn)
-          // websiteBtn.setAttribute('onclick', )
+        linkContainer.appendChild(websiteBtn);
+          websiteBtn.setAttribute('class', 'button' );
+          websiteBtn.textContent = 'website placeholder';
+        linkContainer.appendChild(mapBtn);
+          mapBtn.setAttribute('class','button');
+          mapBtn.textContent = 'maps placeholder';
 }
 };
 var cityInputEl = document.querySelector("#search");
