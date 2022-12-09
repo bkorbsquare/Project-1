@@ -1,5 +1,12 @@
 $(document).foundation();
-
+$(window).scroll(function () {
+  var winScrollTop = $(window).scrollTop();
+  var winHeight = $(window).height();
+  var floaterHeight = $("#resetBtn").outerHeight(true);
+  var fromBottom = 20;
+  var top = winScrollTop + winHeight - floaterHeight - fromBottom;
+  $("#resetBtn").css({ top: top + "px" });
+});
 $(function () {
   $(".search").bind("click", function (event) {
     $(".search-field").toggleClass("expand-search");
@@ -73,21 +80,16 @@ function getWeather(lat, lon) {
 }
 
 function getPointsOfInterest(lat, lon) {
-  var pointOfInterestURL =
-    "https://api.geoapify.com/v2/places?categories=accommodation.hotel&bias=proximity:" +
-    lon +
-    "," +
-    lat +
-    "&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8";
 
-  fetch(pointOfInterestURL).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        displayResults(data);
-      });
-    }
-  });
-}
+  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation.hotel&bias=proximity:" + lon + ',' + lat + '&limit=5&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
+
+    fetch(pointOfInterestURL).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          displayResults(data)
+          ;})}})
+
+};
 
 // https://api.geoapify.com/v2/place-details?drive_15.fuel,drive_15.hotel,
 
@@ -112,18 +114,23 @@ function getPointsOfInterest(lat, lon) {
 //need to figure out how to get the data from getWeather and getForecast  into this function.
 function displayWeather(data) {
   console.log(data);
-
+  
   var temp = data.current.temp;
   var weatherDescription = data.current.weather[0].description;
   var weatherIcon = data.current.weather[0].icon;
   var iconUrl = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
-  var weatherCard = document.querySelector("#weather-card");
-  var cityEl = document.createElement("h2");
-  var currentHeader = document.createElement("ul");
-  var currentTempEl = document.createElement("li");
-  var currentWeatherEl = document.createElement("li");
-  var currentIconEl = document.createElement("img");
-  var projectedContainer = document.createElement("div");
+
+  var weatherCard = document.querySelector('#weather-card');
+  var cityEl = document.createElement('h2');
+  var currentHeader = document.createElement('ul');
+  var currentTempEl = document.createElement('li');
+  var currentWeatherEl = document.createElement('li');
+  var currentIconEl = document.createElement('img');
+  var projectedContainer = document.createElement('div');
+  
+  
+  
+  
 
   //current header creates the container that will display weather conditions.
   weatherCard.appendChild(currentHeader);
@@ -131,8 +138,12 @@ function displayWeather(data) {
   console.log();
   //current temp should be aligned left
   currentHeader.appendChild(currentTempEl);
-  currentTempEl.setAttribute("id", "current-temp");
-  currentTempEl.textContent = "Temp: " + temp + "° F";
+
+
+
+  currentTempEl.setAttribute('id', 'current-temp');
+  currentTempEl.textContent = 'Temp: ' + temp + '° F';
+  
 
   //currentWeatherEl  will be the description of conditions and should be placed in the center of the header.
   currentHeader.appendChild(currentWeatherEl);
@@ -140,6 +151,7 @@ function displayWeather(data) {
   currentWeatherEl.textContent = weatherDescription;
   //Icon should be aligned right.
   currentHeader.appendChild(currentIconEl);
+
   currentIconEl.setAttribute("src", iconUrl);
   currentIconEl.setAttribute("id", "current-icon");
 
@@ -172,8 +184,9 @@ function displayWeather(data) {
     //date should be aligned middle.
     projectedCard.appendChild(projectedDateEl);
     projectedDateEl.setAttribute("id", "projected-date");
-    projectedDateEl.textContent = projectedDate;
 
+    projectedDateEl.textContent = projectedDate;
+    
     //temp should be aligned bottom
     projectedCard.appendChild(projectedTempEl);
     projectedTempEl.textContent = currentTemp + "° F";
@@ -185,32 +198,36 @@ function displayWeather(data) {
 }
 function displayResults(data) {
   console.log(data);
-  for (i = 0; i < 6; i++) {
-    var infoContainer = document.createElement("div");
-    var pointNameEl = document.createElement("h2");
-    var pointName = data.features[i].properties.address_line1;
-    var ratingEl = document.createElement("span");
-    var rating = data.features[i].properties.datasource.raw.stars;
-    var addressEl = document.createElement("p");
-    var address = data.features[i].properties.address_line2;
-    var linkContainer = document.createElement("div");
-    var websiteBtn = document.createElement("button");
-    // var website = data.features[i].properties.datasource.raw.website;
-    var mapBtn = document.createElement("button");
 
-    resultsEl.appendChild(pointOfInterest);
-    pointOfInterest.setAttribute("id", "point-of-interest");
+for (i=0; i < 6; i++) {
+  var pointOfInterest = document.createElement('div');
+
+  var infoContainer = document.createElement('div');
+  var pointNameEl = document.createElement('h2');
+  var pointName = data.features[i].properties.address_line1;
+  // var  ratingEl = document.createElement('span');
+  // var rating = data.features[i].properties.datasource.raw.stars;
+  var addressEl = document.createElement('p');
+  var address = data.features[i].properties.address_line2;
+  var linkContainer = document.createElement('div');
+  var websiteBtn = document.createElement('button')
+  // var website = data.features[i].properties.datasource.raw.website;
+  var mapBtn = document.createElement('button');
+
+  resultsEl.appendChild(pointOfInterest);
+    pointOfInterest.setAttribute('id', 'point-of-interest');
     pointOfInterest.appendChild(infoContainer);
-    infoContainer.setAttribute("id", "info-container");
-    infoContainer.appendChild(pointNameEl);
-    pointNameEl.setAttribute("id", "point-name");
-    pointNameEl.textContent = pointName;
-    infoContainer.appendChild(ratingEl);
-    ratingEl.setAttribute("id", "rating");
-    ratingEl.textContent = "Rating: " + rating;
-    infoContainer.appendChild(addressEl);
-    addressEl.setAttribute("id", "address");
-    addressEl.textContent = address;
+    infoContainer.setAttribute('id', 'info-container');
+      infoContainer.appendChild(pointNameEl);
+        pointNameEl.setAttribute('id', 'point-name');
+        pointNameEl.textContent = pointName;
+      // infoContainer.appendChild(ratingEl);
+        // ratingEl.setAttribute('id', 'rating');
+        // ratingEl.textContent = 'Rating: ' + rating;
+      infoContainer.appendChild(addressEl);
+        addressEl.setAttribute('id', 'address');
+        addressEl.textContent = address;
+
     pointOfInterest.appendChild(linkContainer);
     linkContainer.setAttribute("id", "link-container");
     linkContainer.appendChild(websiteBtn);
@@ -241,3 +258,14 @@ var inputSubmitHandler = function (event) {
   localStorage.setItem("city", cityName);
 };
 inputButton.addEventListener("click", inputSubmitHandler);
+
+
+var input = document.getElementById("search");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("submit-but").click();
+  }
+});
+
+
