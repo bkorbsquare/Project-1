@@ -4,6 +4,7 @@
   --headerText: #000000;
   --background: #587D71;
   --buttonInactive: #084b83;
+  --buttonstuff: #A9927D;
 }
 li {
   list-style: none;
@@ -11,6 +12,9 @@ li {
 /*Tag for initial search bar.*/
 #initial-search {
   margin: 10%;
+}
+#submit-but {
+  box-shadow: none;
 }
 /*Tag for appending previous searches to menu.*/
 #saved-results {
@@ -209,13 +213,19 @@ svg {
 .button {
   border-radius: 50px;
   background-color: var(--buttonInactive);
+  color: var(--searchBar);
+  box-shadow: 5px 10px var(--buttonstuff);
 }
+
 /* This styles the inital search bar*/
 .input-group-rounded .input-group-field {
   border-radius: 5000px 0 0 5000px;
   padding-left: 1rem;
 }
-
+.button:hover {   
+   background-color: var(--secondary);
+  box-shadow: none;
+}
 .input-group-rounded .input-group-button .button {
   border-radius: 0 5000px 5000px 0;
   font-size: 0.8rem;

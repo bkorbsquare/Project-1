@@ -169,7 +169,7 @@ for (i=0; i<10; i++) {
   var websiteBtn = document.createElement('button')
   // var website = data.features[i].properties.datasource.raw.website;
   var mapBtn = document.createElement('button');
-
+console.log(pointName)
   resultsEl.appendChild(pointOfInterest);
     pointOfInterest.setAttribute('id', 'point-of-interest');
     pointOfInterest.appendChild(infoContainer);
