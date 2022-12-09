@@ -5,6 +5,9 @@
   --background: #587D71;
   --buttonInactive: #084b83;
 }
+li {
+  list-style: none;
+}
 /*Tag for initial search bar.*/
 #initial-search {
   margin: 10%;
@@ -17,9 +20,44 @@
 #responsive-menu {
 
 }
+#weather-card {
+    padding: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    justify-content: center;
+    border: solid 2px;
+    border-radius: 10px;
+    box-shadow: 5px 10px var(--buttonInactive);
+  
+}
+#projected-card{
+    padding: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    justify-content: center;
+    border: solid 2px;
+    border-radius: 10px;
+    box-shadow: 5px 10px var(--header);
+  
+}
+#listing-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+}
 /*Tag for reloading the page*/
 #resetBtn {
-  margin: 20%;
+  position: absolute;
+    top: 100px;
+    right: 1px;
+    width: 100px;
+    height: 100px;
+    transition: all 2s ease-in-out;
+    z-index: 1;
 }
 body {
   background-color: var(--background);
@@ -153,8 +191,13 @@ svg {
   width: 150px;
   height: 200px;
 }
-/*footer*/
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+/*footer
 Footer
 © 2022 GitHub, Inc.
 Footer navigation
-Te
+Te*/

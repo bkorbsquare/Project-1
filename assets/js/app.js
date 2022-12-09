@@ -10,6 +10,14 @@ $(function () {
     }
   });
 });
+$(window).scroll(function () {
+  var winScrollTop = $(window).scrollTop();
+  var winHeight = $(window).height();
+  var floaterHeight = $("#resetBtn").outerHeight(true);
+  var fromBottom = 20;
+  var top = winScrollTop + winHeight - floaterHeight - fromBottom;
+  $("#resetBtn").css({ top: top + "px" });
+});
 var resultsEl = document.querySelector("#results");
 var weatherCard = document.createElement("div");
 
@@ -62,6 +70,25 @@ function getWeather(lat, lon) {
     }
   });
 }
+
+function getPointsOfInterest(lat, lon) {
+  var pointOfInterestURL =
+    "https://api.geoapify.com/v2/places?categories=accommodation.hotel&bias=proximity:" +
+    lon +
+    "," +
+    lat +
+    "&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8";
+  console.log(pointOfInterestURL);
+  fetch(pointOfInterestURL).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        displayResults(data);
+      });
+    }
+  });
+}
+
+// https://api.geoapify.com/v2/place-details?drive_15.fuel,drive_15.hotel,
 
 function getPointsOfInterest(lat, lon) {
   var pointOfInterestURL =
@@ -120,18 +147,20 @@ function displayWeather(data) {
   projectedContainer.setAttribute("id", "projected-container");
 
   //this loop is going to loop through and get the 5 day forcast for your time of day.
-  for (i = 0; i < 6; i++) {
-    var projectedDate = data.daily[i].dt;
+  for (i = 1; i < 6; i++) {
+    var unix = data.daily[i].dt * 1000;
+    var projectedDate = dayjs(unix).format("dddd, MMMM D");
+    console.log(projectedDate);
+    var projectedIcon = data.daily[i].weather[0].icon;
     var projectedIconUrl =
       "http://openweathermap.org/img/wn/" + projectedIcon + "@2x.png";
-    var projectedIcon = data.daily[i].weather[0].icon;
     var currentTemp = data.daily[i].temp.day;
     var projectedCard = document.createElement("ul");
     var projectedTempEl = document.createElement("li");
     var projectedDateEl = document.createElement("li");
     var projectedIconEl = document.createElement("img");
     var projectedResultsEl = document.querySelector("#projected-container");
-    console.log(projectedDate);
+    console.log(projectedIconUrl);
     //adds card to the projected container every time through the loop.
     projectedResultsEl.appendChild(projectedCard);
     projectedCard.setAttribute("id", "projected-card");
@@ -148,6 +177,10 @@ function displayWeather(data) {
     projectedCard.appendChild(projectedTempEl);
     projectedTempEl.textContent = currentTemp + "° F";
   }
+  var initialSearchEl = document.querySelector("#initial-search");
+  initialSearchEl.setAttribute("class", "hide");
+  var resetBtnEl = document.querySelector("#resetBtn");
+  resetBtnEl.removeAttribute("class", "hide");
 }
 function displayResults(data) {
   console.log(data);
@@ -162,13 +195,14 @@ function displayResults(data) {
     var rating = data.features[i].properties.datasource.raw.stars;
     var addressEl = document.createElement("p");
     var address = data.features[i].properties.address_line2;
-    // var descriptionEl = document.createElement('p');
-
+    var descriptionEl = document.createElement("p");
+    var description = data.features[i].properties.details[0];
+    console.log(description);
     resultsEl.appendChild(pointOfInterest);
     pointOfInterest.setAttribute("id", "point-of-interest");
-    // pointOfInterest.appendChild(listingLogoEl);
-    //   listingLogoEl.setAttribute('id', 'listing-logo');
-    //   listingLogoEl.setAttribute('src', logoURL);
+    pointOfInterest.appendChild(listingLogoEl);
+    listingLogoEl.setAttribute("id", "listing-logo");
+    // listingLogoEl.setAttribute('src', logoURL);
     pointOfInterest.appendChild(infoContainer);
     infoContainer.setAttribute("id", "info-container");
     infoContainer.appendChild(pointNameEl);
@@ -180,8 +214,10 @@ function displayResults(data) {
     infoContainer.appendChild(addressEl);
     addressEl.setAttribute("id", "address");
     addressEl.textContent = address;
-    // pointOfInterest.appendChild(descriptionEl);
-    //   descriptionEl.setAttribute('id', 'description');
+    pointOfInterest.appendChild(descriptionEl);
+    descriptionEl.setAttribute("id", "description");
+    descriptionEl.textContent =
+      "description placeholder rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble";
   }
 }
 var cityInputEl = document.querySelector("#search");
