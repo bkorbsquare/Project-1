@@ -18,10 +18,10 @@ $(function () {
   });
 });
 $(window).scroll(function () {
-  var winScrollTop = $(window).scrollTop();
-  var winHeight = $(window).height();
-  var floaterHeight = $("#resetBtn").outerHeight(true);
-  var fromBottom = 20;
+  var windowScrollTop = $(window).scrollTop();
+  var windowHeight = $(window).height();
+  var floatHeight = $("#resetBtn").outerHeight(true);
+  var fromBottom = 10;
   var top = winScrollTop + winHeight - floaterHeight - fromBottom;
   $("#resetBtn").css({ top: top + "px" });
 });
