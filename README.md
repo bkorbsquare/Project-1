@@ -16,7 +16,7 @@ On GitHub.com, navigate to the main page of the repository. Above the list of fi
 Use this project as a reference when building a Destination Finder.
 
 ![image](/assets/images/FireShot%20Capture%20015%20-%20Group%208%20-%20.jpg)
-![image]()
+![image](/assets/images/FireShot%20Capture%20016%20-%20Group%208%20-%20.jpg)
 
 ## Deployed Site
 https://bkorbsquare.github.io/Project-1/
