@@ -131,7 +131,7 @@ function displayWeather(data) {
   projectedContainer.setAttribute('class', 'grid-x grid-margin-x');
   
   //this loop is going to loop through and get the 5 day forcast for your time of day.
-  for (i=0; i<5; i++) {
+  for (i=1; i<6; i++) {
     
     var unix = data.daily[i].dt * 1000;
     var projectedDate = dayjs(unix).format("ddd");

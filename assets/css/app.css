@@ -32,10 +32,18 @@ a:hover {
 
 }
 #current-header {
-  justify-content: center;
-  min-width: fit-content;
-
-  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+  margin-top: 10px;
+  align-content: center;
+    border: solid 2px;
+    border-radius: 10px;
+    box-shadow: 5px 10px var(--buttonInactive);
+    background-color: var(--card);
+    min-width: max-content;
+    font-size: 200%;
+    font-weight: 700;
+    
 }
 
 
