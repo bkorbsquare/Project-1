@@ -15,9 +15,10 @@ $(window).scroll(function () {
   var windowHeight = $(window).height();
   var floatHeight = $("#resetBtn").outerHeight(true);
   var fromBottom = 10;
-  var top = winScrollTop + winHeight - floaterHeight - fromBottom;
+  var top = windowScrollTop + windowHeight - floatHeight - fromBottom;
   $("#resetBtn").css({ top: top + "px" });
 });
+
 var resultsEl = document.querySelector("#results");
 var weatherCard = document.createElement("div");
 var pointOfInterest = document.createElement("div");
