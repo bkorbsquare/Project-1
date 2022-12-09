@@ -42,6 +42,7 @@ var getCityName = function (cityName) {
         weatherCard.setAttribute('class','grid-container-fluid');
         //cityEl adds an h2 above the weather information with the chosen city name.
         weatherCard.appendChild(cityEl);
+        cityEl.setAttribute('id', 'city-name');
         cityEl.textContent = city;
         resultsEl.appendChild(pointOfInterestContainer);
         pointOfInterestContainer.setAttribute('class', 'grid-container-fluid');
