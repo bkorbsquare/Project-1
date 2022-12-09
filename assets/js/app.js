@@ -20,6 +20,9 @@ $(window).scroll(function () {
 });
 var resultsEl = document.querySelector("#results");
 var weatherCard = document.createElement("div");
+var pointOfInterest = document.createElement("div");
+resultsEl.appendChild(weatherCard);
+resultsEl.appendChild(pointOfInterest);
 
 //this portion is where we find our lat and long.
 var getCityName = function (cityName) {
@@ -182,9 +185,7 @@ function displayWeather(data) {
 }
 function displayResults(data) {
   console.log(data);
-  for (i = 0; i < 10; i++) {
-    var pointOfInterest = document.createElement("div");
-
+  for (i = 0; i < 6; i++) {
     var infoContainer = document.createElement("div");
     var pointNameEl = document.createElement("h2");
     var pointName = data.features[i].properties.address_line1;
@@ -219,24 +220,24 @@ function displayResults(data) {
     mapBtn.setAttribute("class", "button");
     mapBtn.textContent = "maps placeholder";
   }
-  var cityInputEl = document.querySelector("#search");
-  var inputButton = document.querySelector("#submit-but");
-  var fiveDay = document.querySelector("#search-results");
-  var todaysForecast = document.querySelector("#todays-forecast");
-
-  var inputSubmitHandler = function (event) {
-    event.preventDefault();
-    resultsEl.textContent = "";
-    weatherCard.textContent = "";
-
-    var cityName = cityInputEl.value.trim();
-    if (cityName) {
-      getCityName(cityName);
-    } else {
-      alert("Please enter a city");
-    }
-
-    localStorage.setItem("city", cityName);
-  };
 }
+var cityInputEl = document.querySelector("#search");
+var inputButton = document.querySelector("#submit-but");
+var fiveDay = document.querySelector("#search-results");
+var todaysForecast = document.querySelector("#todays-forecast");
+
+var inputSubmitHandler = function (event) {
+  event.preventDefault();
+  resultsEl.textContent = "";
+  weatherCard.textContent = "";
+
+  var cityName = cityInputEl.value.trim();
+  if (cityName) {
+    getCityName(cityName);
+  } else {
+    alert("Please enter a city");
+  }
+
+  localStorage.setItem("city", cityName);
+};
 inputButton.addEventListener("click", inputSubmitHandler);
