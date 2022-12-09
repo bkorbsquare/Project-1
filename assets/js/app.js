@@ -32,7 +32,7 @@ var getCityName = function (cityName) {
         resultsEl.appendChild(weatherCard);
         //cityEl adds an h2 above the weather information with the chosen city name.
         weatherCard.appendChild(cityEl);
-        cityEl.textContent = city;
+        cityEl.textContent = "Weather";
 
         getWeather(citLat, citLon);
         getPointsOfInterest(citLat, citLon);
@@ -85,7 +85,7 @@ function displayWeather(data) {
   var currentTempEl = document.createElement('li');
   var currentWeatherEl = document.createElement('li');
   var currentIconEl = document.createElement('img');
-  var projectedContainer = document.createElement('div');
+  var projectedContainer = document.getElementById("results-weather");
   
  
 
@@ -149,7 +149,7 @@ resetBtnEl.removeAttribute('class', 'hide');
 };
 function displayResults(data) {
   console.log(data);
-for (i=0; i<10; i++) {
+for (i=0; i<5; i++) {
   var pointOfInterest = document.createElement('div');
   var listingLogoEl = document.createElement('img');
   // var logoURL = 
