@@ -216,5 +216,13 @@ var inputSubmitHandler = function (event) {
 
 inputButton.addEventListener("click", inputSubmitHandler);
 
+var input = document.getElementById("search");
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    document.getElementById("submit-but").click();
+  }
+});
+
 
 
