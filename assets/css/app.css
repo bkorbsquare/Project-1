@@ -1,8 +1,8 @@
 :root {
-  --searchBar: #F0F6F6;
-  --header: #587D71;
+  --searchBar: #f0f6f6;
+  --header: #587d71;
   --headerText: #000000;
-  --background: #587D71;
+  --background: #587d71;
   --buttonInactive: #084b83;
   --buttonstuff: #A9927D;
 }
@@ -17,41 +17,53 @@ li {
   box-shadow: none;
 }
 /*Tag for appending previous searches to menu.*/
-#saved-results {
-
+#results {
+  display: flex;
+  flex-direction: row;
 }
 /*Tag for menu to target.*/
 #responsive-menu {
-
 }
 #weather-card {
-    padding: 10px;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    justify-content: center;
-    border: solid 2px;
-    border-radius: 10px;
-    box-shadow: 5px 10px var(--buttonInactive);
-  
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+  width: 40%;
+  padding: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border: solid 2px;
+  border-radius: 10px;
+  box-shadow: 5px 10px var(--buttonInactive);
 }
-#projected-card{
-    padding: 10px;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    justify-content: center;
-    border: solid 2px;
-    border-radius: 10px;
-    box-shadow: 5px 10px var(--buttonInactive);
-  
+#projected-card {
+  display: flex;
+  flex-wrap: wrap;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-content: center;
+  border: solid 2px;
+  border-radius: 10px;
+  box-shadow: 5px 10px var(--buttonInactive);
+  float: left;
 }
 /* #projected-container {
   display: inline-flex;
 } */
 #point-of-interest {
+  display: flex;
+  flex-wrap: wrap;
+  height: fit-content;
+  width: fit-content;
   padding: 5%;
   margin-left: 10%;
   margin-right: 10%;
@@ -86,7 +98,7 @@ li {
   border-radius: 10px;
   box-shadow: 5px 10px var(--buttonInactive);
 }
-#description{
+#description {
   padding: 5%;
   margin-left: 10%;
   margin-right: 10%;
@@ -100,12 +112,14 @@ li {
 /*Tag for reloading the page*/
 #resetBtn {
   position: absolute;
+<<<<<< ready-to-style
     top: 100px;
     right: 1px;
     width: 100px;
     height: 100px;
     transition: all 2s ease-in-out;
     z-index: 1;
+>>>>>> Skylars-Branch-of-Madness
 }
 body {
   background-color: var(--background);
@@ -113,7 +127,7 @@ body {
 }
 #current-icon {
   width: 50px;
-height: 50px;
+  height: 50px;
 }
 
 .title-bar {
@@ -126,15 +140,17 @@ height: 50px;
   display: flex;
   -webkit-box-pack: start;
   -webkit-justify-content: space-between;
-      -ms-flex-pack: start;
-          justify-content: space-between;
+  -ms-flex-pack: start;
+  justify-content: space-between;
   -webkit-box-align: center;
   -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center; }
-  .title-bar .menu-icon {
-    margin-left: 0.25rem;
-    margin-right: 0.25rem; }
+  -ms-flex-align: center;
+  align-items: center;
+}
+.title-bar .menu-icon {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
 
 .menu-icon {
   position: relative;
@@ -142,22 +158,25 @@ height: 50px;
   vertical-align: middle;
   width: 20px;
   height: 16px;
-  cursor: pointer; }
-  .menu-icon::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: var(--headerText);
-    -webkit-box-shadow: 0 7px 0 var(--headerText), 0 14px 0 var(--headerText);
-            box-shadow: 0 7px 0 var(--headerText), 0 14px 0 var(--headerText);
-    content: ''; }
-  .menu-icon:hover::after {
-    background: #cacaca;
-    -webkit-box-shadow: 0 7px 0 #cacaca, 0 14px 0 #cacaca;
-            box-shadow: 0 7px 0 #cacaca, 0 14px 0 #cacaca; }
+  cursor: pointer;
+}
+.menu-icon::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--headerText);
+  -webkit-box-shadow: 0 7px 0 var(--headerText), 0 14px 0 var(--headerText);
+  box-shadow: 0 7px 0 var(--headerText), 0 14px 0 var(--headerText);
+  content: "";
+}
+.menu-icon:hover::after {
+  background: #cacaca;
+  -webkit-box-shadow: 0 7px 0 #cacaca, 0 14px 0 #cacaca;
+  box-shadow: 0 7px 0 #cacaca, 0 14px 0 #cacaca;
+}
 
 .menu-icon.dark {
   position: relative;
@@ -165,22 +184,25 @@ height: 50px;
   vertical-align: middle;
   width: 20px;
   height: 16px;
-  cursor: pointer; }
-  .menu-icon.dark::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 2px;
-    background: #0a0a0a;
-    -webkit-box-shadow: 0 7px 0 #0a0a0a, 0 14px 0 #0a0a0a;
-            box-shadow: 0 7px 0 #0a0a0a, 0 14px 0 #0a0a0a;
-    content: ''; }
-  .menu-icon.dark:hover::after {
-    background: #8a8a8a;
-    -webkit-box-shadow: 0 7px 0 #8a8a8a, 0 14px 0 #8a8a8a;
-            box-shadow: 0 7px 0 #8a8a8a, 0 14px 0 #8a8a8a; }
+  cursor: pointer;
+}
+.menu-icon.dark::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: #0a0a0a;
+  -webkit-box-shadow: 0 7px 0 #0a0a0a, 0 14px 0 #0a0a0a;
+  box-shadow: 0 7px 0 #0a0a0a, 0 14px 0 #0a0a0a;
+  content: "";
+}
+.menu-icon.dark:hover::after {
+  background: #8a8a8a;
+  -webkit-box-shadow: 0 7px 0 #8a8a8a, 0 14px 0 #8a8a8a;
+  box-shadow: 0 7px 0 #8a8a8a, 0 14px 0 #8a8a8a;
+}
 /* Search bar styling*/
 .searchbar {
   margin: 1rem;
@@ -202,7 +224,7 @@ height: 50px;
   max-width: calc(80% - 3rem);
   border: 1px solid var(searchBar);
   border-radius: 25px;
-  padding: .5rem;
+  padding: 0.5rem;
 }
 
 svg {
@@ -246,8 +268,13 @@ svg {
   width: 150px;
   height: 200px;
 }
-/*footer*/
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+/*footer
 Footer
 © 2022 GitHub, Inc.
 Footer navigation
-Te
+Te*/
