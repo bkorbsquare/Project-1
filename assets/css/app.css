@@ -21,6 +21,7 @@ a:hover {
 /*Tag for initial search bar.*/
 #initial-search {
   margin: 10%;
+  margin-top: 50%;
 }
 #submit-but {
   box-shadow: none;
@@ -62,7 +63,7 @@ a:hover {
     padding: 10px;
 
     margin-top: 10px;
-
+    justify-items: center;
     border: solid 2px;
     border-radius: 10px;
     box-shadow: 5px 10px var(--buttonInactive);
@@ -201,6 +202,7 @@ height: 50px;
 /* Search bar styling*/
 .searchbar {
   margin: 1rem;
+
 }
 
 .search-field {
