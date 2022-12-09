@@ -161,15 +161,15 @@ for (i=0; i<10; i++) {
   var infoContainer = document.createElement('div');
   var pointNameEl = document.createElement('h2');
   var pointName = data.features[i].properties.address_line1;
-  var  ratingEl = document.createElement('span');
-  var rating = data.features[i].properties.datasource.raw.stars;
+  // var  ratingEl = document.createElement('span');
+  // var rating = data.features[i].properties.datasource.raw.stars;
   var addressEl = document.createElement('p');
   var address = data.features[i].properties.address_line2;
   var linkContainer = document.createElement('div');
   var websiteBtn = document.createElement('button')
   // var website = data.features[i].properties.datasource.raw.website;
   var mapBtn = document.createElement('button');
-console.log(pointName)
+
   resultsEl.appendChild(pointOfInterest);
     pointOfInterest.setAttribute('id', 'point-of-interest');
     pointOfInterest.appendChild(infoContainer);
@@ -177,9 +177,9 @@ console.log(pointName)
       infoContainer.appendChild(pointNameEl);
         pointNameEl.setAttribute('id', 'point-name');
         pointNameEl.textContent = pointName;
-      infoContainer.appendChild(ratingEl);
-        ratingEl.setAttribute('id', 'rating');
-        ratingEl.textContent = 'Rating: ' + rating;
+      // infoContainer.appendChild(ratingEl);
+        // ratingEl.setAttribute('id', 'rating');
+        // ratingEl.textContent = 'Rating: ' + rating;
       infoContainer.appendChild(addressEl);
         addressEl.setAttribute('id', 'address');
         addressEl.textContent = address;
