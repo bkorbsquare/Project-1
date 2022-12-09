@@ -200,7 +200,7 @@ function displayResults(data) {
   console.log(data);
 
 for (i=0; i < 6; i++) {
-  var pointOfInterest = document.createElement('div');
+  //var pointOfInterest = document.createElement('div');
 
   var infoContainer = document.createElement('div');
   var pointNameEl = document.createElement('h2');
