@@ -95,7 +95,13 @@ li {
 }
 /*Tag for reloading the page*/
 #resetBtn {
-  margin: 20%;
+  position: absolute;
+    top: 100px;
+    right: 1px;
+    width: 100px;
+    height: 100px;
+    transition: all 2s ease-in-out;
+    z-index: 1;
 }
 body {
   background-color: var(--background);

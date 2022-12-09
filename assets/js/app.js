@@ -1,5 +1,12 @@
 $(document).foundation();
-
+$(window).scroll(function () {
+  var winScrollTop = $(window).scrollTop();
+  var winHeight = $(window).height();
+  var floaterHeight = $("#resetBtn").outerHeight(true);
+  var fromBottom = 20;
+  var top = winScrollTop + winHeight - floaterHeight - fromBottom;
+  $("#resetBtn").css({ top: top + "px" });
+});
 $(function () {
   $(".search").bind("click", function (event) {
     $(".search-field").toggleClass("expand-search");
@@ -55,7 +62,7 @@ function getWeather(lat, lon) {
 
   
 function getPointsOfInterest(lat, lon) {
-  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation.hotel&bias=proximity:" + lon + ',' + lat + '&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
+  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation.hotel&bias=proximity:" + lon + ',' + lat + '&limit=5&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
 
     fetch(pointOfInterestURL).then(function (response) {
       if (response.ok) {
@@ -64,7 +71,6 @@ function getPointsOfInterest(lat, lon) {
           ;})}})
 
 };
-
 // https://api.geoapify.com/v2/place-details?drive_15.fuel,drive_15.hotel,
 
 
@@ -72,7 +78,7 @@ function getPointsOfInterest(lat, lon) {
 //need to figure out how to get the data from getWeather and getForecast  into this function. 
 function displayWeather(data) {
   console.log(data);
-
+  
   var temp = data.current.temp;
   var weatherDescription = data.current.weather[0].description;
   var weatherIcon = data.current.weather[0].icon;
@@ -85,10 +91,10 @@ function displayWeather(data) {
   var currentIconEl = document.createElement('img');
   var projectedContainer = document.createElement('div');
   
- 
-
-
-
+  
+  
+  
+  
   //current header creates the container that will display weather conditions.
   weatherCard.appendChild(currentHeader);
   currentHeader.setAttribute('id', 'current-header');
@@ -97,7 +103,7 @@ function displayWeather(data) {
   currentHeader.appendChild(currentTempEl);
   currentTempEl.setAttribute('id', 'current-temp');
   currentTempEl.textContent = 'Temp: ' + temp + '° F';
-
+  
   //currentWeatherEl  will be the description of conditions and should be placed in the center of the header.
   currentHeader.appendChild(currentWeatherEl);
   currentWeatherEl.setAttribute('id','current-weather');
@@ -106,36 +112,38 @@ function displayWeather(data) {
   currentHeader.appendChild(currentIconEl);
   currentIconEl.setAttribute('src', iconUrl);
   currentIconEl.setAttribute('id','current-icon');
-
+  
   //creates the container for the 5 day forcast.
   weatherCard.appendChild(projectedContainer);
   projectedContainer.setAttribute('id', 'projected-container');
-
+  
   //this loop is going to loop through and get the 5 day forcast for your time of day.
-for (i=0; i<5; i++) {
-
-  var projectedDate = data.daily[i].dt;
-  var projectedIconUrl = 'http://openweathermap.org/img/wn/' + projectedIcon + "@2x.png"
-  var projectedIcon = data.daily[i].weather[0].icon;
-  var currentTemp = data.daily[i].temp.day;
-  var projectedCard = document.createElement('ul');
-  var projectedTempEl = document.createElement('li');
-  var projectedDateEl = document.createElement('li');
-  var projectedIconEl = document.createElement('img');
-  var projectedResultsEl = document.querySelector('#projected-container');
-
-  //adds card to the projected container every time through the loop.
-  projectedResultsEl.appendChild(projectedCard);
-  projectedCard.setAttribute('id', 'projected-card')
-  //Icon should be aligned top.
-  projectedCard.appendChild(projectedIconEl);
+  for (i=0; i<5; i++) {
+    
+    var unix = data.daily[i].dt * 1000;
+        var projectedDate = dayjs(unix).format("dddd, MMMM D");
+    
+    var projectedIcon = data.daily[i].weather[0].icon;
+    var projectedIconUrl = 'http://openweathermap.org/img/wn/' + projectedIcon + "@2x.png"
+    var currentTemp = data.daily[i].temp.day;
+    var projectedCard = document.createElement('ul');
+    var projectedTempEl = document.createElement('li');
+    var projectedDateEl = document.createElement('li');
+    var projectedIconEl = document.createElement('img');
+    var projectedResultsEl = document.querySelector('#projected-container');
+    
+    //adds card to the projected container every time through the loop.
+    projectedResultsEl.appendChild(projectedCard);
+    projectedCard.setAttribute('id', 'projected-card')
+    //Icon should be aligned top.
+    projectedCard.appendChild(projectedIconEl);
     projectedIconEl.setAttribute('src', projectedIconUrl);
     projectedIconEl.setAttribute('id', 'projected-icon');
     //date should be aligned middle.
-  projectedCard.appendChild(projectedDateEl);
+    projectedCard.appendChild(projectedDateEl);
     projectedDateEl.setAttribute('id', 'projected-date');
     projectedDateEl.textContent = projectedDate;
-
+    
     //temp should be aligned bottom
   projectedCard.appendChild(projectedTempEl);
     projectedTempEl.textContent = currentTemp + '° F';
