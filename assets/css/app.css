@@ -41,13 +41,57 @@ li {
     justify-content: center;
     border: solid 2px;
     border-radius: 10px;
-    box-shadow: 5px 10px var(--header);
+    box-shadow: 5px 10px var(--buttonInactive);
   
+}
+/* #projected-container {
+  display: inline-flex;
+} */
+#point-of-interest {
+  padding: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-content: center;
+  border: solid 2px;
+  border-radius: 10px;
+  box-shadow: 5px 10px var(--buttonInactive);
 }
 #listing-logo {
   width: 100px;
   height: 100px;
-  border-radius: 100%;
+  padding: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-content: center;
+  border: solid 2px;
+  border-radius: 10px;
+  box-shadow: 5px 10px var(--buttonInactive);
+}
+#info-container {
+  padding: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-content: center;
+  border: solid 2px;
+  border-radius: 10px;
+  box-shadow: 5px 10px var(--buttonInactive);
+}
+#description{
+  padding: 5%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-content: center;
+  border: solid 2px;
+  border-radius: 10px;
+  box-shadow: 5px 10px var(--buttonInactive);
 }
 /*Tag for reloading the page*/
 #resetBtn {
@@ -61,6 +105,7 @@ li {
 }
 body {
   background-color: var(--background);
+  min-width: 350px;
 }
 #current-icon {
   width: 50px;

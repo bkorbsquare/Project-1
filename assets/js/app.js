@@ -60,12 +60,10 @@ function getWeather(lat, lon) {
     lon +
     "&units=imperial&appid=f48eeb974e0cd19636dc2234eda9e443";
 
-  console.log("forecastData");
   fetch(forecastUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
         displayWeather(data);
-        console.log(data);
       });
     }
   });
@@ -78,7 +76,7 @@ function getPointsOfInterest(lat, lon) {
     "," +
     lat +
     "&limit=20&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8";
-  console.log(pointOfInterestURL);
+
   fetch(pointOfInterestURL).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
@@ -132,7 +130,7 @@ function displayWeather(data) {
   currentHeader.appendChild(currentTempEl);
   currentTempEl.setAttribute("id", "current-temp");
   currentTempEl.textContent = "Temp: " + temp + "° F";
-  console.log("please");
+
   //currentWeatherEl  will be the description of conditions and should be placed in the center of the header.
   currentHeader.appendChild(currentWeatherEl);
   currentWeatherEl.setAttribute("id", "current-weather");
@@ -186,8 +184,7 @@ function displayResults(data) {
   console.log(data);
   for (i = 0; i < 10; i++) {
     var pointOfInterest = document.createElement("div");
-    var listingLogoEl = document.createElement("img");
-    // var logoURL =
+
     var infoContainer = document.createElement("div");
     var pointNameEl = document.createElement("h2");
     var pointName = data.features[i].properties.address_line1;
@@ -195,14 +192,13 @@ function displayResults(data) {
     var rating = data.features[i].properties.datasource.raw.stars;
     var addressEl = document.createElement("p");
     var address = data.features[i].properties.address_line2;
-    var descriptionEl = document.createElement("p");
-    var description = data.features[i].properties.details[0];
-    console.log(description);
+    var linkContainer = document.createElement("div");
+    var websiteBtn = document.createElement("button");
+    // var website = data.features[i].properties.datasource.raw.website;
+    var mapBtn = document.createElement("button");
+
     resultsEl.appendChild(pointOfInterest);
     pointOfInterest.setAttribute("id", "point-of-interest");
-    pointOfInterest.appendChild(listingLogoEl);
-    listingLogoEl.setAttribute("id", "listing-logo");
-    // listingLogoEl.setAttribute('src', logoURL);
     pointOfInterest.appendChild(infoContainer);
     infoContainer.setAttribute("id", "info-container");
     infoContainer.appendChild(pointNameEl);
@@ -214,30 +210,33 @@ function displayResults(data) {
     infoContainer.appendChild(addressEl);
     addressEl.setAttribute("id", "address");
     addressEl.textContent = address;
-    pointOfInterest.appendChild(descriptionEl);
-    descriptionEl.setAttribute("id", "description");
-    descriptionEl.textContent =
-      "description placeholder rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble rabble";
+    pointOfInterest.appendChild(linkContainer);
+    linkContainer.setAttribute("id", "link-container");
+    linkContainer.appendChild(websiteBtn);
+    websiteBtn.setAttribute("class", "button");
+    websiteBtn.textContent = "website placeholder";
+    linkContainer.appendChild(mapBtn);
+    mapBtn.setAttribute("class", "button");
+    mapBtn.textContent = "maps placeholder";
   }
+  var cityInputEl = document.querySelector("#search");
+  var inputButton = document.querySelector("#submit-but");
+  var fiveDay = document.querySelector("#search-results");
+  var todaysForecast = document.querySelector("#todays-forecast");
+
+  var inputSubmitHandler = function (event) {
+    event.preventDefault();
+    resultsEl.textContent = "";
+    weatherCard.textContent = "";
+
+    var cityName = cityInputEl.value.trim();
+    if (cityName) {
+      getCityName(cityName);
+    } else {
+      alert("Please enter a city");
+    }
+
+    localStorage.setItem("city", cityName);
+  };
 }
-var cityInputEl = document.querySelector("#search");
-var inputButton = document.querySelector("#submit-but");
-var fiveDay = document.querySelector("#search-results");
-var todaysForecast = document.querySelector("#todays-forecast");
-
-var inputSubmitHandler = function (event) {
-  event.preventDefault();
-  resultsEl.textContent = "";
-  weatherCard.textContent = "";
-
-  var cityName = cityInputEl.value.trim();
-  if (cityName) {
-    getCityName(cityName);
-  } else {
-    alert("Please enter a city");
-  }
-
-  localStorage.setItem("city", cityName);
-};
-
 inputButton.addEventListener("click", inputSubmitHandler);
