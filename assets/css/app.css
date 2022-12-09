@@ -55,7 +55,7 @@ a:hover {
     width: fit-content;
 }
 #projected-container {
-
+margin: 10px;
 }
 #projected-card{
 
@@ -69,6 +69,7 @@ a:hover {
     box-shadow: 5px 10px var(--buttonInactive);
     background-color: var(--card);
     min-width: fit-content;
+    max-width: 125px;
   
 }
 /* #projected-container {
@@ -80,11 +81,16 @@ a:hover {
   margin-right: auto;
   margin-top: 5%;
   max-width: 770px;
-
+  color: var(--searchBar);
   border: solid 2px;
   border-radius: 10px;
   box-shadow: 5px 10px var(--buttonInactive);
   background-color: var(--card);
+  background: url("https://cdn.vox-cdn.com/thumbor/fX9onefrTRueVVozZ1s7XlIQpps=/0x0:220x122/1400x1050/filters:focal(93x44:127x78):format(gif)/cdn.vox-cdn.com/uploads/chorus_image/image/71396949/50BCC55B_A4ED_48A3_946F_F07D8093B244.0.gif") no-repeat;
+
+}
+#point-name {
+ font-weight: 600;
 }
 
 #info-container {
@@ -126,7 +132,7 @@ body {
   margin: auto;
 }
 main {
-  max-width: 770px;
+  max-width: 1000px;
   margin: auto;
 }
 #current-icon {

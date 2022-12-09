@@ -141,7 +141,7 @@ function displayWeather(data) {
     //adds card to the projected container every time through the loop.
     projectedResultsEl.appendChild(projectedCard);
     projectedCard.setAttribute('id', 'projected-card');
-    projectedCard.setAttribute('class', 'cell small-12 medium-2');
+    projectedCard.setAttribute('class', 'cell small-12 medium-12 large-2');
 
     //Icon should be aligned top.
     projectedCard.appendChild(projectedIconEl);
