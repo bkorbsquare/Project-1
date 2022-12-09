@@ -6,24 +6,30 @@
   --buttonInactive: #084b83;
   --buttonstuff: #A9927D;
 }
+
 li {
   list-style: none;
 }
+
 /*Tag for initial search bar.*/
 #initial-search {
   margin: 10%;
 }
+
 #submit-but {
   box-shadow: none;
 }
+
 /*Tag for appending previous searches to menu.*/
 #results {
   display: flex;
   flex-direction: row;
 }
+
 /*Tag for menu to target.*/
 #responsive-menu {
 }
+
 #weather-card {
   display: inline-flex;
   flex-wrap: wrap;
@@ -40,6 +46,7 @@ li {
   border-radius: 10px;
   box-shadow: 5px 10px var(--buttonInactive);
 }
+
 #projected-card {
   display: flex;
   flex-wrap: wrap;
@@ -56,6 +63,7 @@ li {
   box-shadow: 5px 10px var(--buttonInactive);
   float: left;
 }
+
 /* #projected-container {
   display: inline-flex;
 } */
@@ -74,6 +82,7 @@ li {
   border-radius: 10px;
   box-shadow: 5px 10px var(--buttonInactive);
 }
+
 #listing-logo {
   width: 100px;
   height: 100px;
@@ -87,6 +96,7 @@ li {
   border-radius: 10px;
   box-shadow: 5px 10px var(--buttonInactive);
 }
+
 #info-container {
   padding: 5%;
   margin-left: 10%;
@@ -98,6 +108,7 @@ li {
   border-radius: 10px;
   box-shadow: 5px 10px var(--buttonInactive);
 }
+
 #description {
   padding: 5%;
   margin-left: 10%;
@@ -109,6 +120,7 @@ li {
   border-radius: 10px;
   box-shadow: 5px 10px var(--buttonInactive);
 }
+
 /*Tag for reloading the page*/
 #resetBtn {
   position: absolute;
@@ -119,10 +131,12 @@ li {
     transition: all 2s ease-in-out;
     z-index: 1;
 }
+
 body {
   background-color: var(--background);
   min-width: 350px;
 }
+
 #current-icon {
   width: 50px;
   height: 50px;
@@ -145,6 +159,7 @@ body {
   -ms-flex-align: center;
   align-items: center;
 }
+
 .title-bar .menu-icon {
   margin-left: 0.25rem;
   margin-right: 0.25rem;
@@ -158,6 +173,7 @@ body {
   height: 16px;
   cursor: pointer;
 }
+
 .menu-icon::after {
   position: absolute;
   top: 0;
@@ -170,6 +186,7 @@ body {
   box-shadow: 0 7px 0 var(--headerText), 0 14px 0 var(--headerText);
   content: "";
 }
+
 .menu-icon:hover::after {
   background: #cacaca;
   -webkit-box-shadow: 0 7px 0 #cacaca, 0 14px 0 #cacaca;
@@ -184,6 +201,7 @@ body {
   height: 16px;
   cursor: pointer;
 }
+
 .menu-icon.dark::after {
   position: absolute;
   top: 0;
@@ -196,11 +214,13 @@ body {
   box-shadow: 0 7px 0 #0a0a0a, 0 14px 0 #0a0a0a;
   content: "";
 }
+
 .menu-icon.dark:hover::after {
   background: #8a8a8a;
   -webkit-box-shadow: 0 7px 0 #8a8a8a, 0 14px 0 #8a8a8a;
   box-shadow: 0 7px 0 #8a8a8a, 0 14px 0 #8a8a8a;
 }
+
 /* Search bar styling*/
 .searchbar {
   margin: 1rem;
@@ -242,10 +262,12 @@ svg {
   border-radius: 5000px 0 0 5000px;
   padding-left: 1rem;
 }
+
 .button:hover {   
    background-color: var(--secondary);
   box-shadow: none;
 }
+
 .input-group-rounded .input-group-button .button {
   border-radius: 0 5000px 5000px 0;
   font-size: 0.8rem;
@@ -271,8 +293,3 @@ footer {
   display: flex;
   justify-content: center;
 }
-/*footer
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-Te*/

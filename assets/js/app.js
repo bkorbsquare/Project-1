@@ -128,10 +128,6 @@ function displayWeather(data) {
   var currentIconEl = document.createElement('img');
   var projectedContainer = document.createElement('div');
   
-  
-  
-  
-
   //current header creates the container that will display weather conditions.
   weatherCard.appendChild(currentHeader);
   currentHeader.setAttribute("id", "current-header");
@@ -139,12 +135,9 @@ function displayWeather(data) {
   //current temp should be aligned left
   currentHeader.appendChild(currentTempEl);
 
-
-
   currentTempEl.setAttribute('id', 'current-temp');
   currentTempEl.textContent = 'Temp: ' + temp + '° F';
   
-
   //currentWeatherEl  will be the description of conditions and should be placed in the center of the header.
   currentHeader.appendChild(currentWeatherEl);
   currentWeatherEl.setAttribute("id", "current-weather");
@@ -261,6 +254,7 @@ inputButton.addEventListener("click", inputSubmitHandler);
 
 
 var input = document.getElementById("search");
+//Fire search on "enter"
 input.addEventListener("keypress", function(event) {
   if (event.key === "Enter") {
     event.preventDefault();
