@@ -35,8 +35,9 @@ var getCityName = function (cityName) {
         var cityEl = document.createElement('h2');
 
         //adds weather card to the page.
-        weatherCard.setAttribute('id', 'weather-card')
         resultsEl.appendChild(weatherCard);
+        weatherCard.setAttribute('id', 'weather-card')
+        weatherCard.setAttribute('class','grid-container-fluid');
         //cityEl adds an h2 above the weather information with the chosen city name.
         weatherCard.appendChild(cityEl);
         cityEl.textContent = city;
@@ -95,33 +96,38 @@ function displayWeather(data) {
   
   
   
-  //current header creates the container that will display weather conditions.
   weatherCard.appendChild(currentHeader);
   currentHeader.setAttribute('id', 'current-header');
+  currentHeader.setAttribute('class','grid-x');
+  //current header creates the container that will display weather conditions.
   console.log();
   //current temp should be aligned left
   currentHeader.appendChild(currentTempEl);
   currentTempEl.setAttribute('id', 'current-temp');
+  currentTempEl.setAttribute('class','cell small-3');
   currentTempEl.textContent = 'Temp: ' + temp + '° F';
   
   //currentWeatherEl  will be the description of conditions and should be placed in the center of the header.
   currentHeader.appendChild(currentWeatherEl);
   currentWeatherEl.setAttribute('id','current-weather');
+  currentWeatherEl.setAttribute('class','cell small-3');
   currentWeatherEl.textContent = weatherDescription;
   //Icon should be aligned right.
   currentHeader.appendChild(currentIconEl);
   currentIconEl.setAttribute('src', iconUrl);
   currentIconEl.setAttribute('id','current-icon');
+  currentIconEl.setAttribute('class','cell small-3');
   
   //creates the container for the 5 day forcast.
   weatherCard.appendChild(projectedContainer);
   projectedContainer.setAttribute('id', 'projected-container');
+  projectedContainer.setAttribute('class', 'grid-x grid-margin-x');
   
   //this loop is going to loop through and get the 5 day forcast for your time of day.
   for (i=0; i<5; i++) {
     
     var unix = data.daily[i].dt * 1000;
-        var projectedDate = dayjs(unix).format("dddd, MMMM D");
+        var projectedDate = dayjs(unix).format("ddd");
     
     var projectedIcon = data.daily[i].weather[0].icon;
     var projectedIconUrl = 'http://openweathermap.org/img/wn/' + projectedIcon + "@2x.png"
@@ -134,7 +140,9 @@ function displayWeather(data) {
     
     //adds card to the projected container every time through the loop.
     projectedResultsEl.appendChild(projectedCard);
-    projectedCard.setAttribute('id', 'projected-card')
+    projectedCard.setAttribute('id', 'projected-card');
+    projectedCard.setAttribute('class', 'cell small-2');
+
     //Icon should be aligned top.
     projectedCard.appendChild(projectedIconEl);
     projectedIconEl.setAttribute('src', projectedIconUrl);
@@ -157,40 +165,38 @@ function displayResults(data) {
   console.log(data);
 for (i=0; i<10; i++) {
   var pointOfInterest = document.createElement('div');
-
-  var infoContainer = document.createElement('div');
   var pointNameEl = document.createElement('h2');
   var pointName = data.features[i].properties.address_line1;
-  // var  ratingEl = document.createElement('span');
-  // var rating = data.features[i].properties.datasource.raw.stars;
   var addressEl = document.createElement('p');
   var address = data.features[i].properties.address_line2;
-  var linkContainer = document.createElement('div');
-  var websiteBtn = document.createElement('button')
+  var mapLinkEl = document.createElement('a');
+  var poiLat = data.features[i].properties.lat;
+  var poiLon = data.features[i].properties.lon;
+  var mapSearch = 'https://www.google.com/maps/search/?api=1&query=' + poiLat + ',' + poiLon;
+  console.log(mapSearch);
   // var website = data.features[i].properties.datasource.raw.website;
   var mapBtn = document.createElement('button');
-
+// console.log(webSearch);
   resultsEl.appendChild(pointOfInterest);
     pointOfInterest.setAttribute('id', 'point-of-interest');
-    pointOfInterest.appendChild(infoContainer);
-    infoContainer.setAttribute('id', 'info-container');
-      infoContainer.appendChild(pointNameEl);
-        pointNameEl.setAttribute('id', 'point-name');
-        pointNameEl.textContent = pointName;
-      // infoContainer.appendChild(ratingEl);
-        // ratingEl.setAttribute('id', 'rating');
-        // ratingEl.textContent = 'Rating: ' + rating;
-      infoContainer.appendChild(addressEl);
-        addressEl.setAttribute('id', 'address');
-        addressEl.textContent = address;
-    pointOfInterest.appendChild(linkContainer);
-      linkContainer.setAttribute('id', 'link-container');
-        linkContainer.appendChild(websiteBtn);
-          websiteBtn.setAttribute('class', 'button' );
-          websiteBtn.textContent = 'website placeholder';
-        linkContainer.appendChild(mapBtn);
-          mapBtn.setAttribute('class','button');
-          mapBtn.textContent = 'maps placeholder';
+    pointOfInterest.appendChild(pointNameEl);
+      pointNameEl.setAttribute('id', 'point-name');
+      pointNameEl.textContent = pointName;
+    // infoContainer.appendChild(ratingEl);
+      // ratingEl.setAttribute('id', 'rating');
+      // ratingEl.textContent = 'Rating: ' + rating;
+    pointOfInterest.appendChild(addressEl);
+      addressEl.setAttribute('id', 'address');
+      addressEl.textContent = address;
+    pointOfInterest.appendChild(mapBtn);
+      mapBtn.setAttribute('class','button');
+      mapBtn.appendChild(mapLinkEl);
+      mapLinkEl.setAttribute('href', mapSearch);
+      mapLinkEl.setAttribute('target', '_blank');
+      mapLinkEl.setAttribute('rel', 'noreferrer noopener');
+      mapLinkEl.textContent = 'lets go!';
+
+
 }
 };
 var cityInputEl = document.querySelector("#search");

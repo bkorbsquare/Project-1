@@ -3,11 +3,20 @@
   --header: #587D71;
   --headerText: #000000;
   --background: #587D71;
-  --buttonInactive: #084b83;
-  --buttonstuff: #A9927D;
+  --buttonInactive: #2c4251;
+  --buttonstuff: #808b92;
+  --card: #96a8a2;
 }
+
 li {
   list-style: none;
+}
+a {
+  text-decoration: none;
+  color: var(--searchBar);
+}
+a:hover {
+  color: var(--searchBar);
 }
 /*Tag for initial search bar.*/
 #initial-search {
@@ -20,32 +29,45 @@ li {
 #saved-results {
 
 }
+#current-header {
+  justify-content: center;
+  min-width: fit-content;
+
+  align-items: center;
+}
 /*Tag for menu to target.*/
 #responsive-menu {
 
 }
 #weather-card {
     padding: 10px;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
-    margin-bottom: 5%;
+  margin-left: auto;
+  margin-right: auto;
     justify-content: center;
+    align-items: center;
+    max-width: 1200px;
     border: solid 2px;
     border-radius: 10px;
     box-shadow: 5px 10px var(--buttonInactive);
-  
+    background-color: var(--card);
+
+    width: fit-content;
+}
+#projected-container {
+
 }
 #projected-card{
+
+    
     padding: 10px;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    justify-content: center;
+
+    margin-top: 10px;
+
     border: solid 2px;
     border-radius: 10px;
     box-shadow: 5px 10px var(--buttonInactive);
+    background-color: var(--card);
+    min-width: fit-content;
   
 }
 /* #projected-container {
@@ -53,28 +75,17 @@ li {
 } */
 #point-of-interest {
   padding: 5%;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 5%;
-  margin-bottom: 5%;
-  justify-content: center;
+  max-width: 770px;
+
   border: solid 2px;
   border-radius: 10px;
   box-shadow: 5px 10px var(--buttonInactive);
+  background-color: var(--card);
 }
-#listing-logo {
-  width: 100px;
-  height: 100px;
-  padding: 5%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  justify-content: center;
-  border: solid 2px;
-  border-radius: 10px;
-  box-shadow: 5px 10px var(--buttonInactive);
-}
+
 #info-container {
   padding: 5%;
   margin-left: 10%;
@@ -110,6 +121,12 @@ li {
 body {
   background-color: var(--background);
   min-width: 350px;
+
+  margin: auto;
+}
+main {
+  max-width: 770px;
+  margin: auto;
 }
 #current-icon {
   width: 50px;
