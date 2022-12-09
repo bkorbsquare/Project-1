@@ -20,8 +20,9 @@ a:hover {
 }
 /*Tag for initial search bar.*/
 #initial-search {
-  margin: 10%;
   margin-top: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 #submit-but {
   box-shadow: none;
@@ -44,6 +45,7 @@ a:hover {
     padding: 10px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 4rem;
     justify-content: center;
     align-items: center;
     max-width: 1200px;
@@ -52,89 +54,103 @@ a:hover {
     box-shadow: 5px 10px var(--buttonInactive);
     background-color: var(--card);
 
-    width: fit-content;
+
 }
 #projected-container {
-margin: 10px;
+margin-left: auto;
+margin-right: auto;
+justify-content: center;
 }
 #projected-card{
-
-    
-    padding: 10px;
-
-    margin-top: 10px;
-    justify-items: center;
+  
+  
+  padding: 10px;
+  justify-content: center;
+  margin-top: 10px;
+  justify-items: center;
     border: solid 2px;
     border-radius: 10px;
     box-shadow: 5px 10px var(--buttonInactive);
     background-color: var(--card);
     min-width: fit-content;
     max-width: 125px;
+    
+  }
+  /* #projected-container {
+    display: inline-flex;
+  } */
+  #point-of-interest {
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    
+    color: var(--headerText);
+    border: solid 2px;
+    border-radius: 10px;
+    box-shadow: 5px 10px var(--buttonInactive);
+    background-color: var(--card);
+    /* background: url("https://cdn.vox-cdn.com/thumbor/fX9onefrTRueVVozZ1s7XlIQpps=/0x0:220x122/1400x1050/filters:focal(93x44:127x78):format(gif)/cdn.vox-cdn.com/uploads/chorus_image/image/71396949/50BCC55B_A4ED_48A3_946F_F07D8093B244.0.gif") no-repeat; */
+    
+  }
+  #point-name {
+    font-weight: 600;
+  }
   
-}
-/* #projected-container {
-  display: inline-flex;
-} */
-#point-of-interest {
-  padding: 5%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5%;
-  max-width: 770px;
-  color: var(--searchBar);
-  border: solid 2px;
-  border-radius: 10px;
-  box-shadow: 5px 10px var(--buttonInactive);
-  background-color: var(--card);
-  background: url("https://cdn.vox-cdn.com/thumbor/fX9onefrTRueVVozZ1s7XlIQpps=/0x0:220x122/1400x1050/filters:focal(93x44:127x78):format(gif)/cdn.vox-cdn.com/uploads/chorus_image/image/71396949/50BCC55B_A4ED_48A3_946F_F07D8093B244.0.gif") no-repeat;
-
-}
-#point-name {
- font-weight: 600;
-}
-
-#info-container {
-  padding: 5%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  justify-content: center;
-  border: solid 2px;
-  border-radius: 10px;
-  box-shadow: 5px 10px var(--buttonInactive);
-}
-#description{
-  padding: 5%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  justify-content: center;
-  border: solid 2px;
-  border-radius: 10px;
-  box-shadow: 5px 10px var(--buttonInactive);
-}
-/*Tag for reloading the page*/
-#resetBtn {
-  position: absolute;
+  #info-container {
+    padding: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    justify-content: center;
+    border: solid 2px;
+    border-radius: 10px;
+    box-shadow: 5px 10px var(--buttonInactive);
+  }
+  #description{
+    padding: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    justify-content: center;
+    border: solid 2px;
+    border-radius: 10px;
+    box-shadow: 5px 10px var(--buttonInactive);
+  }
+  /*Tag for reloading the page*/
+  #resetBtn {
+    position: absolute;
     top: 100px;
     right: 1px;
     width: 100px;
     height: 100px;
     transition: all 2s ease-in-out;
     z-index: 1;
-}
-body {
-  background-color: var(--background);
+  }
+  body {
+    background-color: var(--background);
   min-width: 350px;
-
+  min-height: auto;
   margin: auto;
 }
 main {
   max-width: 1000px;
   margin: auto;
 }
+/* footer {
+  height: 50px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  line-height: 50px;
+  color: var(--searchBar);
+  text-align: center;
+  width: 100%;
+  background-color: var(--buttonInactive)
+
+} */
 #current-icon {
   width: 50px;
 height: 50px;

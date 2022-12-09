@@ -19,11 +19,13 @@ $(function () {
 });
 var resultsEl = document.querySelector('#results')
 var weatherCard = document.createElement('div');
+var pointOfInterestContainer = document.createElement('div');
+pointOfInterestContainer1 = document.createElement('div');
 
 //this portion is where we find our lat and long.
 var getCityName = function (cityName) {
   var locationURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=5eadcacf0e30dbacf32a851c3ca447bb";
-
+  
   //here boy, this guy retrievers the lat and long of the city we input.
   fetch(locationURL).then(function (response) {
     if (response.ok) {
@@ -33,7 +35,7 @@ var getCityName = function (cityName) {
         var citLon = data[0].lon;
         var city = data[0].name;
         var cityEl = document.createElement('h2');
-
+        
         //adds weather card to the page.
         resultsEl.appendChild(weatherCard);
         weatherCard.setAttribute('id', 'weather-card')
@@ -41,6 +43,10 @@ var getCityName = function (cityName) {
         //cityEl adds an h2 above the weather information with the chosen city name.
         weatherCard.appendChild(cityEl);
         cityEl.textContent = city;
+        resultsEl.appendChild(pointOfInterestContainer);
+        pointOfInterestContainer.setAttribute('class', 'grid-container-fluid');
+        pointOfInterestContainer.appendChild(pointOfInterestContainer1);
+        pointOfInterestContainer1.setAttribute('class', 'grid-x grid-margin-x');
 
         getWeather(citLat, citLon);
         getPointsOfInterest(citLat, citLon);
@@ -63,7 +69,7 @@ function getWeather(lat, lon) {
 
   
 function getPointsOfInterest(lat, lon) {
-  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation.hotel&bias=proximity:" + lon + ',' + lat + '&limit=5&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
+  var pointOfInterestURL = "https://api.geoapify.com/v2/places?categories=accommodation.hotel&bias=proximity:" + lon + ',' + lat + '&limit=6&apiKey=b9d60eea968f40d3ab5868cce8cdd4d8'
 
     fetch(pointOfInterestURL).then(function (response) {
       if (response.ok) {
@@ -127,7 +133,7 @@ function displayWeather(data) {
   for (i=0; i<5; i++) {
     
     var unix = data.daily[i].dt * 1000;
-        var projectedDate = dayjs(unix).format("ddd");
+    var projectedDate = dayjs(unix).format("ddd");
     
     var projectedIcon = data.daily[i].weather[0].icon;
     var projectedIconUrl = 'http://openweathermap.org/img/wn/' + projectedIcon + "@2x.png"
@@ -177,8 +183,9 @@ for (i=0; i<10; i++) {
   // var website = data.features[i].properties.datasource.raw.website;
   var mapBtn = document.createElement('button');
 // console.log(webSearch);
-  resultsEl.appendChild(pointOfInterest);
+  pointOfInterestContainer1.appendChild(pointOfInterest);
     pointOfInterest.setAttribute('id', 'point-of-interest');
+    pointOfInterest.setAttribute('class', 'cell small-12 large-6');
     pointOfInterest.appendChild(pointNameEl);
       pointNameEl.setAttribute('id', 'point-name');
       pointNameEl.textContent = pointName;
