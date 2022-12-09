@@ -112,14 +112,12 @@ li {
 /*Tag for reloading the page*/
 #resetBtn {
   position: absolute;
-<<<<<< ready-to-style
     top: 100px;
     right: 1px;
     width: 100px;
     height: 100px;
     transition: all 2s ease-in-out;
     z-index: 1;
->>>>>> Skylars-Branch-of-Madness
 }
 body {
   background-color: var(--background);
