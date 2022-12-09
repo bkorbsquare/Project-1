@@ -1,12 +1,5 @@
 $(document).foundation();
-$(window).scroll(function () {
-  var winScrollTop = $(window).scrollTop();
-  var winHeight = $(window).height();
-  var floaterHeight = $("#resetBtn").outerHeight(true);
-  var fromBottom = 20;
-  var top = winScrollTop + winHeight - floaterHeight - fromBottom;
-  $("#resetBtn").css({ top: top + "px" });
-});
+
 $(function () {
   $(".search").bind("click", function (event) {
     $(".search-field").toggleClass("expand-search");
