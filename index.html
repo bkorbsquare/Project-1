@@ -15,26 +15,12 @@
 </head>
 <body>
   <header>
-    <div  class="title-bar topbar-center-logo-mobile" data-responsive-toggle="responsive-menu" data-hide-for="none">
-      <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
-      <div class="title-bar-title"><strong>Destination Finder</strong></div>
-      <div class="title-bar-left">
-        
-          <input class="input-field search-field" type="search" placeholder="Planning a trip?" id=""/>
-        </div>
-      </div>
-    </div>
-    <!--this is where we can append previous stored searches-->
-    <div class="top-bar" id="responsive-menu">
-      <!--this is where the stored searches will be appended-->
-      <div class="top-bar-left" id="saved-results">
-      </div>
-    </div>
+      <span class="title">Destination Finder</span>
   </header>
   <main>
     <section class="row align-middle" id="initial-search">  
       <div class="input-group input-group-rounded">
-        <input id="search" class="input-group-field" placeholder="Enter the name of desired City" type="search">
+        <input id="search" class="input-group-field" placeholder="City" type="search">
         <div class="input-group-button">
           <input id="submit-but" type="submit" class="button secondary" value="Search">
         </div>
@@ -42,18 +28,13 @@
     </section>
     <!--this div serves as the containers in which results will be appended.-->
     <section id="results">
-
       </div>
     </section>
     <section>
       <div class="hide"id="resetBtn"><button class="expanded button align-center" onclick="document.location.reload()">reset</button></div>
-    </section>
-          
+    </section>  
   </main>
-  <!-- <footer>
-    <h3>Footer</h3>
-  </footer> -->
-  </body>
+</body>
 
     
     
