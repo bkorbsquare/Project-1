@@ -24,6 +24,7 @@ https://bkorbsquare.github.io/Project-1/
 ## Credits
 
 Thanks to the whole group for their expertise and patience (https://github.com/AbdirisakAbukar, https://github.com/CBshmear, https://github.com/S7440), as well as TA's Emma Olson & Chris Stallcup. 
+Scroll button code adapted and sourced from https://stackoverflow.com/questions/29907959/button-that-scrolls-with-the-page/ 
 
 ## License
 
